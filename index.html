@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <title>Browser Security Exercises</title>
+</head>
+<body>
+  <script src="https://staff.washington.edu/pgraff/same-origin/test.js"></script>
+  <div class="banner">
+    <h1>Browser Security Exercises</h1>
+  </div>
+  <h2 class="first">Content Security Policy<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
+  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. It's also recommended that you open Dev Tools (specifically the Console as well as Network tabs) to monitor page activity.</p>
+  <p class="instructions">Set a content security policy to do the following:</p>
+  <ol>
+    <li>Allow <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
+    <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
+    <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
+    <li>In addition to all stylesheets and images, allow <i>only</i> scripts from code.jquery.com.</li>
+    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but make sure all inline scripts are blocked.</li>
+    <li>In addition to scripts from code.jquery.com and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
+  </ol>
+  <div class="card">
+    <div class="card-header">
+      Page asssets & scripts
+    </div>
+    <div class="card-body">
+      <ul>
+        <li class='images'>
+          <p class='item'>Images</p>
+          <div class='container images'>
+            <div class="row">
+              <div class="col-md-2">
+                <img id='local' src='img/uw-suz.jpg'>
+                <label for='local'>Served locally</label>
+              </div>
+              <div class="col-md-2">
+                <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
+                <label for='wikimedia'>From Wikimedia.org</label>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><p class="item">Local stylesheet</p><span class="subtext"> (styles.css)</span></li>
+        <li><p class="item">Bootstrap stylesheet, via external CDN</p><span class="subtext"> (bootstrap.min.css)</span></li>
+
+        <li>
+          <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+        </li>
+
+        <li>
+          <p class="item">Inline script 1</p>
+          <span id='inline-msg' class='blocked'>blocked</span>
+          <script type="text/javascript">
+            // replaces span to reflect script having executed
+            var new_span = document.createElement('span');
+            new_span.setAttribute('class', 'allowed');
+            var new_content = document.createTextNode('allowed');
+            new_span.appendChild(new_content);
+            var current_span = document.getElementById('inline-msg');
+            var parent_li = current_span.parentNode;
+            parent_li.replaceChild(new_span, current_span);
+          </script>
+        </li>
+
+        <li>
+          <p class="item">Inline script 2</p>
+          <span id='inline2-msg' class='blocked'>blocked</span>
+          <script type="text/javascript">
+            // replaces span to reflect script having executed
+            var new_span = document.createElement('span');
+            new_span.setAttribute('class', 'allowed');
+            var new_content = document.createTextNode('allowed');
+            new_span.appendChild(new_content);
+            var current_span = document.getElementById('inline2-msg');
+            var parent_li = current_span.parentNode;
+            parent_li.replaceChild(new_span, current_span);
+          </script>
+        </li>
+        <li>
+          <p class="item">Local external script</p>
+          <span id='external-msg' class='blocked'>blocked</span>
+          <script type="text/javascript" src="js/local.js"></script>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <h2>X-XSS-Protection Header<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection" target="0">MDN</a></span></h2>
+  <ol>
+    <li>
+      <p>As an added layer of protection for older browsers not supporting CSP, make sure the <code>X-XSS-Protection</code> header is set for all responses. This can be done by adding a single line to the app.js file using Helmet.js's <a href="https://helmetjs.github.io/docs/xss-filter/" target="0">XSS Filter</a> module.</p>
+      <p>Reload the page and verify this header is indeed set.</p>
+    </li>
+  </ol>
+  <h2>Subresource Integrity <span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="0">MDN</a></span></h2>
+  <ol>
+    <li>
+      <p>Right now, this page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that. Add another layer of security for this file by adding an <code>integrity</code> attribute on the script tag (you'll have to edit this file, index.html). For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well.</p>
+      <p>Now, reload the page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked? (This is a little tricky, since the Network tab will show the file as having been loaded.)</p>
+    </li>
+  </ol>
+  <h2>Explicit MIME Types and Disabling MIME Sniffing<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MDN</a></span></h2>
+  <ol>
+    <li>
+      <p>For each of the local page resources, check the response to verify a <code>ContentType</code> header was sent (use the Dev Tools Network tab). Also, verify whether or not browser MIME sniffing has been explicitly disabled by the server. If it hasn't, fix this using Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> (you'll need to add a line in the app.js file).</p>
+      <p>Reload the page, and verify the presence of the appropriate response header (<code>X-Content-Type-Options: nosniff</code>).</p>
+    </li>
+  </ol>
+  <h2>Enabling Safer Cookies<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN</a></span></h2>
+  <p>For these exercises, you'll need to edit the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0"><code>res.cookie</code></a> method in the app.js file.</p>
+  <ol>
+    <li>
+      <p>Note that this app sets a 'chipsahoy' cookie on the initial response. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
+      <p>Reload the page and try accessing the cookie once again with <code>document.cookie</code>.</p>
+    </li>
+    <li>
+      <p>Check that this cookie is sent on subsequent requests to local resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests not over https by using the <code>secure</code> directive.</p>
+      <p>Reload the page, then check those same requests to verify this cookie was not sent (since this app is making the requests over http rather than https).</p>
+    </li>
+    <li>
+      <p>Finally, ensure that this cookie won't be sent along with any cross-site (third party) requests by adding the <code>sameSite</code> directive. Also, give this cookie an explicit expiration date (HINT: an easy way to do that is to use <code>new Date(Date.now + 1000)</code> as a value).</p>
+      <p>Reload the page and check that the cookie reflects these updates.</p>
+    </li>
+  </ol>
+</body>
+</html>

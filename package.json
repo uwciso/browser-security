@@ -1,0 +1,19 @@
+{
+  "name": "csp-module",
+  "version": "1.0.0",
+  "description": "simple server to help teach CSP and browser security",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "less": "^3.8.1",
+    "nodemon": "^1.18.3",
+    "path": "^0.12.7"
+  }
+}
