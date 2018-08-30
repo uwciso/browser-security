@@ -9,20 +9,20 @@
   <title>Browser Security Exercises</title>
 </head>
 <body>
-  <script src="https://staff.washington.edu/pgraff/same-origin/test.js"></script>
   <div class="banner">
-    <h1>Browser Security Exercises</h1>
+    <h1>Browser Security: Exercises</h1>
   </div>
   <h2 class="first">Content Security Policy<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
-  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. It's also recommended that you open Dev Tools (specifically the Console as well as Network tabs) to monitor page activity.</p>
+  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>.</p>
+  <p>It's also recommended that you open Dev Tools (specifically the Console as well as Network tabs) to see errors, monitor resource downloads, etc.</p>
   <p class="instructions">Set a content security policy to do the following:</p>
   <ol>
     <li>Allow <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
     <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
     <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
     <li>In addition to all stylesheets and images, allow <i>only</i> scripts from code.jquery.com.</li>
-    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but make sure all inline scripts are blocked.</li>
-    <li>In addition to scripts from code.jquery.com and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
+    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but make sure all inline scripts are blocked).</li>
+    <li>In addition to scripts from the jQuery CDN and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
   </ol>
   <div class="card">
     <div class="card-header">

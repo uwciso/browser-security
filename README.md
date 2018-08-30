@@ -1,6 +1,6 @@
 # Browser Security
 
-This small Express.js app provides an easy way to learn about and test out many browser security features. It also uses Helmet.js middleware to provide simple modification of response headers and other HTTP server configurations.
+This simple Node/Express.js app provides an easy way to learn about and test out many browser security features. It also uses Helmet.js middleware to provide simple modification of response headers and other HTTP server configurations.
 
 ## Instructions
 
