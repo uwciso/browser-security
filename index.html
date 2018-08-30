@@ -13,7 +13,7 @@
     <h1>Browser Security: Exercises</h1>
   </div>
   <h2 class="first">Content Security Policy<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
-  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>.</p>
+  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. In addition, check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a solid overview of using CSP with Express apps.</p>
   <p>It's also recommended that you open Dev Tools (specifically the Console as well as Network tabs) to see errors, monitor resource downloads, etc.</p>
   <p class="instructions">Set a content security policy to do the following:</p>
   <ol>
@@ -120,7 +120,7 @@
       <p>Reload the page and try accessing the cookie once again with <code>document.cookie</code>.</p>
     </li>
     <li>
-      <p>Check that this cookie is sent on subsequent requests to local resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests not over https by using the <code>secure</code> directive.</p>
+      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests not over https by using the <code>secure</code> directive.</p>
       <p>Reload the page, then check those same requests to verify this cookie was not sent (since this app is making the requests over http rather than https).</p>
     </li>
     <li>
