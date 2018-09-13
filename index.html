@@ -21,7 +21,7 @@
     <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
     <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
     <li>In addition to all stylesheets and images, allow <i>only</i> scripts from code.jquery.com.</li>
-    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but make sure all inline scripts are blocked).</li>
+    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but block all inline scripts).</li>
     <li>In addition to scripts from the jQuery CDN and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
   </ol>
   <p>Can't get enough CSP? Check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a nice overview of using it with Express apps.
