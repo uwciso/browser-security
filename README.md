@@ -2,7 +2,7 @@
 
 This simple Node/Express.js app provides an easy way to interactively learn about browser security features. 
 
-In addition to [Express](https://expressjs.com/), it uses [Helmet.js](https://helmetjs.github.io/) middleware to provide a simple means of modifying server response headers and other HTTP server configurations.
+In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https://helmetjs.github.io/) middleware to provide a simple means of modifying server response headers and other HTTP server configurations.
 
 ## Installation
 
