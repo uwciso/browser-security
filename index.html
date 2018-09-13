@@ -13,8 +13,8 @@
     <h1>Browser Security: Exercises</h1>
   </div>
   <h2 class="first">Content Security Policy<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
-  <p class="instructions">Open up the app.js file in a text editor, and for each excercise below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). This Express.js app uses Helmet.js middleware to easily <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. In addition, check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a solid overview of using CSP with Express apps.</p>
-  <p>It's also recommended that you open Dev Tools (specifically the Console as well as Network tabs) to see errors, monitor resource downloads, etc.</p>
+  <p class="instructions">This app uses Helmet.js middleware to <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. Open up the app.js file in a text editor, and for each item below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file).</p>
+  <p>To see the results of each content security policy modification, pay attention to the "Page assets & scripts" section of this page on each reload, which will indicate whether certain assets (images and inline as well as same-origin scripts) were loaded/executed. Additionally, to verify external CDN resources (the jQuery library and Bootstrap stylesheet), open up Dev Tools and observe page requests on the "Network" tab.</p>
   <p class="instructions">Set a content security policy to do the following:</p>
   <ol>
     <li>Allow <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
@@ -24,6 +24,7 @@
     <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but make sure all inline scripts are blocked).</li>
     <li>In addition to scripts from the jQuery CDN and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
   </ol>
+  <p>Can't get enough CSP? Check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a nice overview of using it with Express apps.
   <div class="card">
     <div class="card-header">
       Page asssets & scripts
@@ -102,7 +103,7 @@
   <ol>
     <li>
       <p>Right now, this page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that. Add another layer of security for this file by adding an <code>integrity</code> attribute on the script tag (you'll have to edit this file, index.html). For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well.</p>
-      <p>Now, reload the page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked? (This is a little tricky, since the Network tab will show the file as having been loaded.)</p>
+      <p>Now, reload the page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked? (This is a little tricky, since the Network tab will show the file as having been loaded. You'll need to use the console to verify the presence of the library.)</p>
     </li>
   </ol>
   <h2>Explicit MIME Types and Disabling MIME Sniffing<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MDN</a></span></h2>
@@ -117,10 +118,10 @@
   <ol>
     <li>
       <p>Note that this app sets a 'chipsahoy' cookie on the initial response. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
-      <p>Reload the page and try accessing the cookie once again with <code>document.cookie</code>.</p>
+      <p>Reload the page and try accessing the cookie again through the console with <code>document.cookie</code>.</p>
     </li>
     <li>
-      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests not over https by using the <code>secure</code> directive.</p>
+      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https by using the <code>secure</code> directive.</p>
       <p>Reload the page, then check those same requests to verify this cookie was not sent (since this app is making the requests over http rather than https).</p>
     </li>
     <li>

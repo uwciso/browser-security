@@ -1,5 +1,5 @@
 /*****************************************************************************
- Modify this (csp_directives) object with your chosen CSP directives
+ Modify this object with your chosen CSP directives
 *****************************************************************************/
 const csp_directives = {
   'default-src': ['*'],
