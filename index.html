@@ -19,8 +19,9 @@
   <div class="csp-challenges">
     <div class="written-instr">
       <p class="instructions"><b>CSP Challenges</b></p>
+      <span><i>Each challenge is explained visually in accompanying grid</i></span>
       <ol>
-        <li>Set a default policy which allows <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
+        <li>Set a default policy which allows <i>only</i> local assets to be loaded (all inline scripts should be blocked).</li>
         <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
         <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
         <li>In addition to all stylesheets and images, allow <i>only</i> scripts from the code.jquery.com CDN.</li>
@@ -128,7 +129,7 @@
   </div>
   <p class="instructions">To see the results of each CSP modification:</p>
   <ul>
-    <li>On each reload, watch the "Page assets" section of this page to verify what was loaded/executed (with the exception of local stylesheets and external CDN resources).</li>
+    <li>On page reload, watch the "Page Assets" section below to verify what was loaded/executed (with the exception of the local stylesheet and external CDN resources).</li>
     <li>Verify the local stylesheet and external CDN resources (jQuery and the Bootstrap stylesheet) by opening Dev Tools, reloading page, and observing requests on the <a href="/network-tab.html">Network tab</a>.
     </li>
   </ul>
@@ -142,7 +143,7 @@
 
   <div class="card">
     <div class="card-header">
-      Page assets
+      Page Assets
     </div>
     <div class="card-body">
       <ul>

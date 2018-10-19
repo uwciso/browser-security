@@ -19,11 +19,14 @@ body {
   align-content: flex-start;
   align-items: center;
 }
+.csp-challenges ol {
+  margin-top: 10px;
+}
 .csp-challenges .written-instr {
   padding-right: 35px;
 }
 .csp-challenges .table-instr {
-  margin-top: 23px;
+  margin-top: 55px;
 }
 table.challenges th {
   padding-right: 20px;
