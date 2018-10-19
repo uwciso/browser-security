@@ -9,6 +9,15 @@
 body {
   padding: 15px 30px;
 }
+.backlink {
+  margin-top: 15px;
+}
+.example-img {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
 h2 {
   font-size: 1.7rem;
   background-color: #e7d2a5;
@@ -27,6 +36,10 @@ h2:not(.first) {
 }
 ul {
   margin-bottom: 0;
+}
+p.instructions {
+  margin-bottom: 2px;
+  margin-top: 15px;
 }
 .container.images {
   margin-left: 0;
@@ -47,17 +60,18 @@ ul {
   margin-left: 3px;
   background-color: #3da024;
   color: white;
-  padding: 2px 3px;
+  padding: 3px 6px;
   border-radius: 3px;
 }
 .blocked {
   margin-left: 3px;
   background-color: #e83b20;
   color: white;
-  padding: 2px 3px;
+  padding: 3px 6px;
   border-radius: 3px;
 }
 .card {
+  margin-top: 25px;
   margin-bottom: 20px;
 }
 .card-header {

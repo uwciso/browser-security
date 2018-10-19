@@ -10,12 +10,11 @@
 </head>
 <body>
   <div class="banner">
-    <h1>Browser Security: Exercises</h1>
+    <h1>Browser Security Exercises</h1>
   </div>
-  <h2 class="first">Content Security Policy<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
-  <p class="instructions">This app uses Helmet.js middleware to <a href="https://helmetjs.github.io/docs/csp/" target="0">configure and send CSP response headers</a>. Open up the app.js file in a text editor, and for each item below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file).</p>
-  <p>To see the results of each content security policy modification, pay attention to the "Page assets & scripts" section of this page on each reload, which will indicate whether certain assets (images and inline as well as same-origin scripts) were loaded/executed. Additionally, to verify external CDN resources (the jQuery library and Bootstrap stylesheet), open up Dev Tools and observe page requests on the "Network" tab.</p>
-  <p class="instructions">Set a content security policy to do the following:</p>
+  <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
+  <p class="instructions">Open up the app.js file in a text editor, and for each CSP challenge below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). Refer to the <a href="https://helmetjs.github.io/docs/csp/" target="0">Helmet.js middleware docs</a> for format/syntax guidance. </p>
+  <p class="instructions"><b>CSP Challenges</b></p>
   <ol>
     <li>Allow <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
     <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
@@ -24,37 +23,27 @@
     <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but block all inline scripts).</li>
     <li>In addition to scripts from the jQuery CDN and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
   </ol>
-  <p>Can't get enough CSP? Check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a nice overview of using it with Express apps.
+
+  <p class="instructions">To see the results of each CSP modification:</p>
+  <ul>
+    <li>On each reload, watch the "Page assets" section of this page to verify what was loaded/executed (with the exception of local stylesheets and external CDN resources).</li>
+    <li>Verify the local stylesheet and external CDN resources (jQuery and the Bootstrap stylesheet) by opening Dev Tools, reloading page, and observing requests on the <a href="/network-tab.html">Network tab</a>.
+    </li>
+  </ul>
+
+  <!--
+  <form method="GET" id="testform" action="/form">
+    <p>Name: <input type="text" name="name" /></p>
+    <p><button id="send-button" type="submit">Send</button></p>
+  </form>
+  -->
+
   <div class="card">
     <div class="card-header">
-      Page asssets & scripts
+      Page assets
     </div>
     <div class="card-body">
       <ul>
-        <li class='images'>
-          <p class='item'>Images</p>
-          <div class='container images'>
-            <div class="row">
-              <div class="col-md-2">
-                <img id='local' src='img/uw-suz.jpg'>
-                <label for='local'>Served locally</label>
-              </div>
-              <div class="col-md-2">
-                <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
-                <label for='wikimedia'>From Wikimedia.org</label>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li><p class="item">Local stylesheet</p><span class="subtext"> (styles.css)</span></li>
-        <li><p class="item">Bootstrap stylesheet, via external CDN</p><span class="subtext"> (bootstrap.min.css)</span></li>
-
-        <li>
-          <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
-          <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
-        </li>
-
         <li>
           <p class="item">Inline script 1</p>
           <span id='inline-msg' class='blocked'>blocked</span>
@@ -89,9 +78,36 @@
           <span id='external-msg' class='blocked'>blocked</span>
           <script type="text/javascript" src="js/local.js"></script>
         </li>
+        <li class='images'>
+          <p class='item'>Images</p>
+          <div class='container images'>
+            <div class="row">
+              <div class="col-md-2">
+                <img id='local' src='img/uw-suz.jpg'>
+                <label for='local'>Served locally</label>
+              </div>
+              <div class="col-md-2">
+                <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
+                <label for='wikimedia'>From Wikimedia.org</label>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><p class="item">Local stylesheet</p><span class="subtext"> (styles.css)</span></li>
+        <li><p class="item">Bootstrap stylesheet, via external CDN</p><span class="subtext"> (bootstrap.min.css)</span></li>
+
+        <li>
+          <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+        </li>
+
+
       </ul>
     </div>
   </div>
+
+  <p>Can't get enough CSP? Check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a nice overview of using it with Express apps.
+
   <h2>X-XSS-Protection Header<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection" target="0">MDN</a></span></h2>
   <ol>
     <li>
@@ -109,11 +125,11 @@
   <h2>Explicit MIME Types and Disabling MIME Sniffing<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MDN</a></span></h2>
   <ol>
     <li>
-      <p>For each of the local page resources, check the response to verify a <code>ContentType</code> header was sent (use the Dev Tools Network tab). Also, verify whether or not browser MIME sniffing has been explicitly disabled by the server. If it hasn't, fix this using Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> (you'll need to add a line in the app.js file).</p>
+      <p>For each of the local page resources, check the response to verify a <code>ContentType</code> header was sent (use the Dev Tools Network tab). Also, verify whether or not browser MIME sniffing has been explicitly disabled by the server (to prevent the browser potentially making its own guess at the resource's content type and ignoring information sent by the server). If it hasn't, fix this using Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> (you'll need to add a line in the app.js file).</p>
       <p>Reload the page, and verify the presence of the appropriate response header (<code>X-Content-Type-Options: nosniff</code>).</p>
     </li>
   </ol>
-  <h2>Enabling Safer Cookies<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN</a></span></h2>
+  <h2>Safer Cookies<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN</a></span></h2>
   <p>For these exercises, you'll need to edit the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0"><code>res.cookie</code></a> method in the app.js file.</p>
   <ol>
     <li>

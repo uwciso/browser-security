@@ -6,7 +6,7 @@ In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https:/
 
 ## Installation
 
-Make sure you have [Node (and npm)](https://nodejs.org/en/) installed (npm installs automatically with Node).
+Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which automatically installs with Node).
 
 `git clone https://github.com/uwciso/browser-security.git`
 
