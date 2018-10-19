@@ -4,26 +4,128 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <title>Browser Security Exercises</title>
 </head>
 <body>
+
   <div class="banner">
     <h1>Browser Security Exercises</h1>
   </div>
   <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
   <p class="instructions">Open up the app.js file in a text editor, and for each CSP challenge below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). Refer to the <a href="https://helmetjs.github.io/docs/csp/" target="0">Helmet.js middleware docs</a> for format/syntax guidance. </p>
-  <p class="instructions"><b>CSP Challenges</b></p>
-  <ol>
-    <li>Allow <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
-    <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
-    <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
-    <li>In addition to all stylesheets and images, allow <i>only</i> scripts from code.jquery.com.</li>
-    <li>Now, allow scripts from the jQuery CDN as well as any local external scripts (but block all inline scripts).</li>
-    <li>In addition to scripts from the jQuery CDN and local external scripts, allow inline script 1 by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it). Is there another method of allowing all inline scripts on this page? Is it safe?</li>
-  </ol>
 
+  <div class="csp-challenges">
+    <div class="written-instr">
+      <p class="instructions"><b>CSP Challenges</b></p>
+      <ol>
+        <li>Set a default policy which allows <i>only</i> local assets (non-inline scripts, stylesheets, images, etc.) to be loaded.</li>
+        <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
+        <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
+        <li>In addition to all stylesheets and images, allow <i>only</i> scripts from the code.jquery.com CDN.</li>
+        <li>Now, allow scripts from the jQuery CDN as well as any local scripts (but still block all inline scripts).</li>
+        <li>In addition to scripts from the jQuery CDN and local scripts, allow inline script A by using a hash (HINT: Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message when refusing to run it).</li>
+        <li>Find two ways in which to allow both inline scripts, as well as all other assets. Is this safe?</li>
+      </ol>
+    </div>
+    <div class="table-instr">
+      <table class="challenges">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Inline Script A</th>
+            <th>Inline Script B</th>
+            <th>Local Script</th>
+            <th>Local Image</th>
+            <th>External Image</th>
+            <th>Local Stylesheet</th>
+            <th>Bootstrap Stylesheet (via CDN)</th>
+            <th>jQuery (via CDN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="no"></td>
+            <td class="no"></td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="no"></td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="no"></td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+          </tr>
+          <tr>
+            <th>6</th>
+            <td class="yes"></td>
+            <td class="no"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+          </tr>
+          <tr>
+            <th>7</th>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+            <td class="yes"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <p class="instructions">To see the results of each CSP modification:</p>
   <ul>
     <li>On each reload, watch the "Page assets" section of this page to verify what was loaded/executed (with the exception of local stylesheets and external CDN resources).</li>
@@ -45,7 +147,7 @@
     <div class="card-body">
       <ul>
         <li>
-          <p class="item">Inline script 1</p>
+          <p class="item">Inline script A</p>
           <span id='inline-msg' class='blocked'>blocked</span>
           <script type="text/javascript">
             // replaces span to reflect script having executed
@@ -60,7 +162,7 @@
         </li>
 
         <li>
-          <p class="item">Inline script 2</p>
+          <p class="item">Inline script B</p>
           <span id='inline2-msg' class='blocked'>blocked</span>
           <script type="text/javascript">
             // replaces span to reflect script having executed
@@ -74,22 +176,20 @@
           </script>
         </li>
         <li>
-          <p class="item">Local external script</p>
+          <p class="item">Local script</p>
           <span id='external-msg' class='blocked'>blocked</span>
           <script type="text/javascript" src="js/local.js"></script>
         </li>
         <li class='images'>
           <p class='item'>Images</p>
-          <div class='container images'>
-            <div class="row">
-              <div class="col-md-2">
-                <img id='local' src='img/uw-suz.jpg'>
-                <label for='local'>Served locally</label>
-              </div>
-              <div class="col-md-2">
-                <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
-                <label for='wikimedia'>From Wikimedia.org</label>
-              </div>
+          <div class='all-images'>
+            <div class="">
+              <label for='local'>Local</label>
+              <img id='local' src='img/uw-suz.jpg'>
+            </div>
+            <div class="">
+              <label for='wikimedia'>External</label>
+              <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
             </div>
           </div>
         </li>

@@ -12,6 +12,43 @@ body {
 .backlink {
   margin-top: 15px;
 }
+.csp-challenges {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+}
+.csp-challenges .written-instr {
+  padding-right: 35px;
+}
+.csp-challenges .table-instr {
+  margin-top: 23px;
+}
+table.challenges th {
+  padding-right: 20px;
+  width: 10px;
+  font-size: 14px;
+  line-height: 16px;
+  vertical-align: bottom;
+}
+table.challenges th:first-child {
+  padding-right: 7px;
+  vertical-align: middle;
+}
+table.challenges td {
+  border-right: 3px solid white;
+  border-top: 3px solid white;
+  height: 33px;
+}
+td.no {
+  background-color: #e83b20;
+}
+td.yes {
+  background-color: #3da024;
+}
+td.no, td.yes {
+}
 .example-img {
   border: 1px solid lightgray;
   border-radius: 4px;
@@ -41,8 +78,16 @@ p.instructions {
   margin-bottom: 2px;
   margin-top: 15px;
 }
-.container.images {
-  margin-left: 0;
+.all-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+  margin-bottom: 20px;
+}
+.all-images div {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 .item {
   font-weight: bold;
@@ -51,6 +96,12 @@ p.instructions {
 .images img {
   width: 150px;
   display: block;
+}
+.images p.item {
+  margin-bottom: 7px;
+}
+.images label {
+  margin-bottom: 5px;
 }
 .frame {
   height: 100px;

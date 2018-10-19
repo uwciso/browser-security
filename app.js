@@ -2,7 +2,7 @@
  Modify this object with your chosen CSP directives
 *****************************************************************************/
 const csp_directives = {
-  'default-src': ['*']
+  'default-src': ["*"]
 };
 
 const express = require('express');
