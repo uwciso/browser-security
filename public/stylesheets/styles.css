@@ -26,7 +26,7 @@ body {
   padding-right: 35px;
 }
 .csp-challenges .table-instr {
-  margin-top: 55px;
+  align-self: center;
 }
 table.challenges th {
   padding-right: 20px;

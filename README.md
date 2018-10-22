@@ -8,18 +8,18 @@ In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https:/
 
 Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which automatically installs with Node).
 
-`git clone https://github.com/uwciso/browser-security.git`
+1. `git clone https://github.com/uwciso/browser-security.git`
 
-`cd browser-security`
+2. `cd browser-security`
 
-`npm install` 
+3. `npm install` 
 
 ## Usage
-`npm run start` 
+1. `npm run start` 
 
-Point your browser to [localhost:3100](http://localhost:3100) 
+2. Point your browser to [localhost:3100](http://localhost:3100) 
 
-To do the exercises, you'll need to open up the app.js (and, eventually, index.html) files in your text editor of choice. This app uses [nodemon](https://nodemon.io/), so as you make changes to files, your browser should automatically reload.
+3. To do the exercises, you'll need to open up the app.js (and, eventually, index.html) files in your text editor of choice. This app uses [nodemon](https://nodemon.io/), so as you make changes to files, your browser should automatically reload.
 
 ## Resources
 * [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
