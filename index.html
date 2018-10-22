@@ -14,7 +14,7 @@
     <h1>Browser Security Exercises</h1>
   </div>
   <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
-  <p class="instructions">Open up the app.js file in a text editor, and for each CSP challenge below, create a corresponding content security policy by editing the <code>csp_directives</code> object (at the top of the file). Refer to the <a href="https://helmetjs.github.io/docs/csp/" target="0">Helmet.js middleware docs</a> for format/syntax guidance. </p>
+  <p class="instructions">Open up the app.js file in a text editor, and for each CSP challenge below, create a corresponding content security policy by editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L4-L6" target="blank"><code>csp_directives</code> object</a>. Refer to the <a href="https://helmetjs.github.io/docs/csp/" target="0">Helmet.js docs</a> for format/syntax guidance. </p>
 
   <div class="csp-challenges">
     <div class="written-instr">
@@ -191,13 +191,12 @@
 
         <li>
           <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
-          <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         </li>
       </ul>
     </div>
   </div>
-
-  <p>Can't get enough CSP? Check out <a href="https://ponyfoo.com/articles/content-security-policy-in-express-apps" target="0">this article</a> for a nice overview of using it with Express apps.
+  <p>To see solutions to each CSP challenge, view the <a href="https://github.com/uwciso/browser-security/blob/master/app.js" target="0">app.js</a> file on its corresponding branch.</p>
 
   <h2>X-XSS-Protection Header<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection" target="0">MDN</a></span></h2>
   <ol>
@@ -209,8 +208,12 @@
   <h2>Subresource Integrity <span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="0">MDN</a></span></h2>
   <ol>
     <li>
-      <p>Right now, this page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that. Add another layer of security for this file by adding an <code>integrity</code> attribute on the script tag (you'll have to edit this file, index.html). For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
-      <p>Now, reload the page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked? (This is a little tricky, since the Network tab will show the file as having been loaded. You'll need to use the console to verify the presence of the library.)</p>
+      <p>Right now, this page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that. Add another layer of security for this file by adding an <code>integrity</code> attribute on the <a href="https://github.com/uwciso/browser-security/blob/master/index.html#L194" target="blank">script tag</a> of this file, index.html. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
+      <p>Now, reload the page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked?</p>
+      <p>Note: verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can verify by attempting to execute a jQuery selection in the console window, or, in Chrome Dev Tools, using the Source tab to see if that file is available.</p>
+    </li>
+    <li>
+      <p>Now, with the integrity attribute correctly applied, remove the <code>crossorigin="anonymous"</code> attribute completely, and reload the page. Does the script resource load? Why or why not?</p>
     </li>
   </ol>
   <h2>Explicit MIME Types and Disabling MIME Sniffing<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MDN</a></span></h2>
