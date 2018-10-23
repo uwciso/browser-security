@@ -16,7 +16,7 @@
   <span class="glyphicon glyphicon-fire"></span>
 
   <div class="instr-wrapper">
-    <p><img src="/img/exclamation.png" />All exercises refer to this <a href="/example.html">example page</a>, which simply loads a variety of assets. Keep it open on another browser tab, as you'll be referring to it throughout the exercises.</p>
+    <p><img src="/img/exclamation.png" />All exercises refer to <a href="/example.html">this example page</a>, which simply loads a variety of assets. Keep it open on another browser tab, as you'll be referring to it throughout the exercises.</p>
   </div>
 
   <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
@@ -26,7 +26,7 @@
   <div class="csp-challenges">
     <div class="written-instr">
       <p class="instructions"><b>CSP Challenges</b></p>
-      <span><i>Each challenge is explained visually in accompanying grid</i></span>
+      <span class="sub-instructions">Each challenge refers to assets loaded (or not loaded) by the <a href="/example.html">example page</a>.</span>
       <ol>
         <li>Set a default policy which allows <i>only</i> local assets to be loaded (all inline scripts should be blocked).</li>
         <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
@@ -150,10 +150,10 @@
     </li>
   </ol>
   <h2>Subresource Integrity <span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="0">MDN</a></span></h2>
-  <p>Right now, this page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that.</p>
+  <p>Right now, the example page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file was modified, the browser would have no way to detect that.</p>
   <ol>
     <li>
-      <p>Add another layer of security for this file by adding an <code>integrity</code> attribute on the <a href="https://github.com/uwciso/browser-security/blob/master/index.html#L194" target="blank">script tag</a> of this file, index.html. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
+      <p>Add another layer of security for this file by adding an <code>integrity</code> attribute on the <a href="https://github.com/uwciso/browser-security/blob/master/public/example.html#L75" target="blank">script tag</a> of the example.html file. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
       <p>Now, reload the example page and verify that the resource loads as expected. Then, modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked?</p>
       <p>Note: verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can verify by attempting to execute a jQuery selection in the console window, or, in Chrome Dev Tools, using the Source tab to see if that file is available.</p>
     </li>

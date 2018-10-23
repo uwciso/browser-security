@@ -102,6 +102,9 @@ p.instructions {
   margin-bottom: 2px;
   margin-top: 15px;
 }
+.sub-instructions {
+  font-style: italic;
+}
 .all-images {
   display: flex;
   flex-direction: row;
