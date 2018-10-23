@@ -18,13 +18,13 @@ app.use(helmet.contentSecurityPolicy({
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/example.html', (req, res) => {
   res.cookie('chipsahoy', 'delicious', {
     /*****************************************************************************
      Cookie directives go here
     *****************************************************************************/
   });
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/example.html'));
 });
 
 app.listen(3100, () => console.log('App is running at localhost:3100'));

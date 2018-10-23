@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <title>Browser Security Exercises Example Page</title>
+</head>
+<body>
+
+  <div class="banner">
+    <h1>Browser Security Exercises: Example Page</h1>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Page Assets
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>
+          <p class="item">Inline script A</p>
+          <span id='inline-msg' class='blocked'>blocked</span>
+          <script type="text/javascript">
+            // replaces span to reflect script having executed
+            var new_span = document.createElement('span');
+            new_span.setAttribute('class', 'allowed');
+            var new_content = document.createTextNode('allowed');
+            new_span.appendChild(new_content);
+            var current_span = document.getElementById('inline-msg');
+            var parent_li = current_span.parentNode;
+            parent_li.replaceChild(new_span, current_span);
+          </script>
+        </li>
+
+        <li>
+          <p class="item">Inline script B</p>
+          <span id='inline2-msg' class='blocked'>blocked</span>
+          <script type="text/javascript">
+            // replaces span to reflect script having executed
+            var new_span = document.createElement('span');
+            new_span.setAttribute('class', 'allowed');
+            var new_content = document.createTextNode('allowed');
+            new_span.appendChild(new_content);
+            var current_span = document.getElementById('inline2-msg');
+            var parent_li = current_span.parentNode;
+            parent_li.replaceChild(new_span, current_span);
+          </script>
+        </li>
+        <li>
+          <p class="item">Local script</p>
+          <span id='external-msg' class='blocked'>blocked</span>
+          <script type="text/javascript" src="js/local.js"></script>
+        </li>
+        <li class='images'>
+          <p class='item'>Images</p>
+          <div class='all-images'>
+            <div class="">
+              <label for='local'>Local</label>
+              <img id='local' src='img/uw-suz.jpg'>
+            </div>
+            <div class="">
+              <label for='wikimedia'>External</label>
+              <img id='wikimedia' src="https://upload.wikimedia.org/wikipedia/commons/6/6b/NYC_-_Guggenheim_Museum.jpg" >
+            </div>
+          </div>
+        </li>
+        <li><p class="item">Local stylesheet</p><span class="subtext"> (styles.css)</span></li>
+        <li><p class="item">Bootstrap stylesheet, via external CDN</p><span class="subtext"> (bootstrap.min.css)</span></li>
+
+        <li>
+          <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="backlink"><a href="/">< Back to exercises</a></p>
+</body>
+</html>

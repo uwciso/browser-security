@@ -6,11 +6,35 @@
   margin-bottom: 15px;
   border-radius: 4px;
 }
+.banner.main {
+  margin-bottom: 0;
+}
 body {
   padding: 15px 30px;
 }
 .backlink {
   margin-top: 15px;
+}
+img#network {
+  border: 1px solid #c7c7c7;
+  border-radius: 4px;
+}
+.instr-wrapper {
+  background-color: #e2e2e2;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin-left: -12px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.instr-wrapper p {
+  margin: 0;
+}
+.instr-wrapper img {
+  height: 20px;
+  margin-right: 10px;
+  position: relative;
+  bottom: 3px;
 }
 .csp-challenges {
   display: flex;
@@ -73,9 +97,6 @@ h2:not(.first) {
   font-size: 15px;
   position: relative;
   bottom: -11px;
-}
-ul {
-  margin-bottom: 0;
 }
 p.instructions {
   margin-bottom: 2px;
