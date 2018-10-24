@@ -2,19 +2,19 @@
  Modify this object with your chosen CSP directives
 *****************************************************************************/
 const csp_directives = {
-  'default-src': ["*"]
+  'default-src': ["*"],
 };
 
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const app = express();
-app.set('view engine', 'pug');
-app.set('views', './views');
 
 app.use(helmet.contentSecurityPolicy({
   directives: csp_directives
 }));
+
+app.use(helmet.noSniff());
 
 app.use(express.static('public'));
 
