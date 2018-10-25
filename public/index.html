@@ -16,7 +16,7 @@
   <span class="glyphicon glyphicon-fire"></span>
 
   <div class="instr-wrapper">
-    <p><img src="/img/exclamation.png" />All exercises refer to the <a href="/assets.html">assets page</a>. Keep it open on another browser tab (along with Dev Tools), as you'll be referring to it throughout the exercises.</p>
+    <p><img src="/img/exclamation.png" />All exercises refer to the <a href="/assets.html">assets page</a>. Keep it open on another browser tab (along with Dev Tools), as you'll be referring to it throughout.</p>
   </div>
 
   <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
@@ -26,7 +26,7 @@
   <div class="csp-challenges">
     <div class="written-instr">
       <p class="instructions"><b>CSP Challenges</b></p>
-      <span class="sub-instructions">Each challenge refers to assets loaded (or not loaded) by the <a href="/assets.html">assets page</a>.</span>
+      <span class="sub-instructions">Each challenge refers to assets loaded (or not) by the <a href="/assets.html">assets page</a>.</span>
       <ol>
         <li>Set a default policy which allows <i>only</i> local assets to be loaded (all inline scripts should be blocked).</li>
         <li>In addition to the local stylesheet and (non-inline) scripts, allow the Bootstrap stylesheet to be loaded from its CDN.</li>
@@ -166,24 +166,28 @@
   <h2>Explicit MIME Types and Disabling MIME Sniffing<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MDN</a></span></h2>
   <ol>
     <li>
-      <p>For each of the assets page's local page resources, check the response to verify a <code>Content-Type</code> header was sent (use the Dev Tools Network tab).</p>
+      <p>For each of the assets page's local resources, check the response to verify a <code>Content-Type</code> header was sent (use the Dev Tools Network tab).</p>
     </li>
     <li><p>Verify whether or not browser MIME sniffing has been explicitly disabled by the server (to prevent the browser potentially making its own guess at the resource's content type and ignoring information sent by the server). If it hasn't, fix this using Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> (you'll need to add a line in the app.js file).
      Reload the assets page, and verify the presence of the appropriate response header (<code>X-Content-Type-Options: nosniff</code>).</p>
   </ol>
   <h2>Safer Cookies<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN</a></span></h2>
-  <p>For these exercises, you'll need to edit the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0"><code>res.cookie</code></a> method in the app.js file.</p>
+  <p>For these exercises, you'll need to edit the <code>res.cookie</code> method in the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L22-L26" target="0">app.js</a> file. Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for more info on this method.</p>
   <ol>
     <li>
-      <p>Note that this app sets a 'chipsahoy' cookie on the initial response. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
+      <p>Note that this app sets a 'foo' cookie on the initial response with a value of 'bar'. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
       <p>Reload the assets page and try accessing the cookie again through the console with <code>document.cookie</code>.</p>
     </li>
     <li>
       <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https by using the <code>secure</code> directive.</p>
-      <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making the requests over http rather than https).</p>
+      <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</p>
     </li>
     <li>
-      <p>Finally, ensure that this cookie won't be sent along with any cross-site (third party) requests by adding the <code>sameSite</code> directive. Also, give this cookie an explicit expiration date (HINT: an easy way to do that is to use <code>new Date(Date.now + 1000)</code> as a value).</p>
+      <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests by adding the <code>sameSite</code> directive.</p>
+    </li>
+    <li>
+      <p>Finally, give this cookie an explicit expiration date using the <code>Expires</code> directive (HINT: an easy way to provide a date value is to  use <code>new Date(Date.now + 1000)</code>).</p>
+    </li>
       <p>Reload the assets page and check that the cookie reflects these updates.</p>
     </li>
   </ol>
