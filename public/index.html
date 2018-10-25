@@ -16,7 +16,7 @@
   <span class="glyphicon glyphicon-fire"></span>
 
   <div class="instr-wrapper">
-    <p><img src="/img/exclamation.png" />All exercises refer to the <a href="/assets.html">assets page</a>. Keep it open on another browser tab (along with Dev Tools), as you'll be referring to it throughout.</p>
+    <p><img src="/img/exclamation.png" />All exercises refer to the <a href="/assets.html" target="0">assets page</a>. Keep it open on another browser tab (along with Dev Tools), as you'll be referring to it throughout.</p>
   </div>
 
   <h2 class="first">Content Security Policy (CSP)<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="0">MDN</a></span></h2>
@@ -175,7 +175,7 @@
   <p>For these exercises, you'll need to edit the <code>res.cookie</code> method in the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L22-L26" target="0">app.js</a> file. Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for more info on this method.</p>
   <ol>
     <li>
-      <p>Note that this app sets a 'foo' cookie on the initial response with a value of 'bar'. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
+      <p>Note that this app sets a 'newcookie' cookie on the initial response with a value of 'chocolate-chip'. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
       <p>Reload the assets page and try accessing the cookie again through the console with <code>document.cookie</code>.</p>
     </li>
     <li>

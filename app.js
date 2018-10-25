@@ -17,12 +17,10 @@ app.use(helmet.contentSecurityPolicy({
 app.use(express.static('public'));
 
 app.get('/assets.html', (req, res) => {
-  res.cookie('foo', 'bar', {
+  res.cookie('newcookie', 'chocolate-chip', {
    /*****************************************************************************
      Cookie directives go here
     *****************************************************************************/
-    httpOnly: true,
-    secure: true,
   });
   res.sendFile(path.join(__dirname + '/assets.html'));
 });
