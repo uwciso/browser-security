@@ -157,7 +157,7 @@
       <p>Reload the assets page and verify that the resource loads as expected.</p>
     </li>
     <li>
-      <p>Modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked by the browser? (Verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can attempt to execute a jQuery selection in the console window, or, in Chrome Dev Tools, use the Source tab to see if that file is available.</p>
+      <p>Modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked by the browser? Verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can attempt to execute a jQuery selection in the console window, or, in Chrome Dev Tools, use the Source tab to see if that file is available.</p>
     </li>
     <li>
       <p>Now, with the integrity attribute correctly applied, remove just the <code>crossorigin="anonymous"</code> attribute, and reload the assets page. Does the script resource load? Why or why not?</p>
@@ -181,6 +181,9 @@
     <li>
       <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https by using the <code>secure</code> directive.</p>
       <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</p>
+    </li>
+    <li>
+      <p>Tighten the scoping of this cookie by making sure it's <i>only</i> sent on requests to the assets.html page.</p>
     </li>
     <li>
       <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests by adding the <code>sameSite</code> directive.</p>
