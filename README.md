@@ -1,4 +1,4 @@
-# Browser Security
+# Modern Browser Security
 
 This simple Node/Express.js app provides an easy way to interactively learn about browser security features. 
 
