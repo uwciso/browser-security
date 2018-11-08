@@ -172,24 +172,24 @@
      Reload the assets page, and verify the presence of the appropriate response header (<code>X-Content-Type-Options: nosniff</code>).</p>
   </ol>
   <h2>Safer Cookies<span class="resource"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN</a></span></h2>
-  <p>For these exercises, you'll need to edit the <code>cookie_options</code> object in the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L11-L13" target="0">app.js</a> file. Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for more info on cookie options.</p>
+  <p>For these exercises, you'll need to edit the <code>cookie_options</code> object in the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L12-L14" target="0">app.js</a> file. Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for more info on cookie options.</p>
   <ol>
     <li>
-      <p>Note that this app sets a 'newcookie' cookie on the initial response with a value of 'chocolate-chip'. Use <code>document.cookie</code> in the Dev Tools console to see this cookie and its value. Now, add the <code>httpOnly</code> directive to this cookie to prevent it from being accessed directly with JS methods.</p>
-      <p>Reload the assets page and try accessing the cookie again through the console with <code>document.cookie</code>.</p>
+      <p>Note that this app sets a 'newcookie' cookie with a value of 'chocolate-chip' on the initial response for the assets.html. In the Dev Tools console, use JavaScript to access this cookie. Now, add the appropriate directive to the cookie to prevent this type of access.</p>
+      <p>Reload the assets page and try accessing the cookie again through the console.</p>
     </li>
     <li>
-      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https by using the <code>secure</code> directive.</p>
+      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https.</p>
       <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</p>
     </li>
     <li>
       <p>Tighten the scoping of this cookie by making sure it's <i>only</i> sent on requests to the assets.html page.</p>
     </li>
     <li>
-      <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests by adding the <code>sameSite</code> directive.</p>
+      <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests.<p>
     </li>
     <li>
-      <p>Finally, give this cookie an explicit expiration date using the <code>Expires</code> directive (HINT: an easy way to provide a date value is to  use <code>new Date(Date.now + 1000)</code>).</p>
+      <p>Finally, give this cookie an explicit expiration date (HINT: an easy way to provide a date value is to  use <code>new Date(Date.now + 1000)</code>).</p>
     </li>
       <p>Reload the assets page and check that the cookie reflects these updates.</p>
     </li>

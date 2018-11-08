@@ -4,13 +4,15 @@
 const csp_directives = {
   'default-src': ["*"],
 };
+/*****************************************************************************/
 
 /*****************************************************************************
- Modify this object with your chosen cookie options 
+ Modify this object with your chosen cookie directives 
 *****************************************************************************/
-const cookie_options = {
+const cookie_directives = {
 
 }
+/*****************************************************************************/
 
 const express = require('express');
 const path = require('path');
@@ -24,15 +26,25 @@ app.use(helmet.contentSecurityPolicy({
 function attach_cookie(url, cookie, value) {
   return function(req, res, next) {
     if (req.url === url) {
-      res.cookie(cookie, value, cookie_options);
+      if (cookie_directives.path) {
+        if (req.url.includes(cookie_directives.path)) {
+          res.cookie(cookie, value, cookie_directives);
+        }
+      } else {
+        res.cookie(cookie, value, cookie_directives);
+      }
     }
     next();
   }
 }
 
-// set cookies for specific static assets
-app.use(attach_cookie('/assets.html', 'anothertest', 'anothervalue'));
-app.use(attach_cookie('/img/uw-suz.jpg', 'imgtest', 'anothervalue'));
+const cookie_name = 'newcookie';
+const cookie_val = 'chocolate-chip';
+const static_urls = ['/assets.html', '/img/uw-suz.jpg', '/js/local.js', '/stylesheets/styles.css'];
+// set a cookie for each of the static assets
+for (let i = 0; i < static_urls.length; i++) {
+  app.use(attach_cookie(static_urls[i], cookie_name, cookie_val));
+}
 
 app.use(express.static('public'));
 
