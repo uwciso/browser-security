@@ -8,6 +8,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uwciso/browser-security"
+  }
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
