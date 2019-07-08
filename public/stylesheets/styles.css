@@ -9,6 +9,9 @@
 .banner.main {
   margin-bottom: 0;
 }
+.banner.main a {
+  color: white;
+}
 body {
   padding: 15px 30px;
 }
@@ -18,6 +21,14 @@ body {
 img#network {
   border: 1px solid #c7c7c7;
   border-radius: 4px;
+}
+.instr-header {
+  margin-top: 10px;
+  margin-left: -5px;
+  margin-bottom: 15px;
+  background-color: #e6e6e6;
+  border-radius: 4px;
+  padding: 10px 15px 5px 15px;
 }
 .instr-wrapper {
   background-color: #e2e2e2;
@@ -36,8 +47,29 @@ img#network {
   position: relative;
   bottom: 3px;
 }
+.toc-btn {
+  background-color: #b9b9b9; 
+  color: black;
+  display: flex;
+  width: 50%;
+  height: 65px;
+  align-items: center;
+  margin-top: 15px;
+}
+.toc-btn:hover {
+  background-color: #4b2e83; 
+  color: white;
+  transition: .2s;
+}
+h3 {
+  font-size: 1.3rem;
+}
+.toc-btn h2 {
+  margin-top: 8px !important;
+}
 .csp-challenges {
   display: flex;
+  margin-top: 20px;
   flex-direction: row;
   justify-content: flex-start;
   align-content: flex-start;
@@ -88,19 +120,12 @@ h1 {
 }
 h2 {
   font-size: 1.5rem;
-  background-color: #e7d2a5;
-  padding: 2px 12px;
-  margin-left: -5px;
-  border-radius: 3px;
-}
-h2:not(.first) {
-  margin-top: 25px;
 }
 .resource {
   float: right;
   font-size: 15px;
   position: relative;
-  bottom: -9px;
+  bottom: -19px;
 }
 p.instructions {
   margin-bottom: 2px;

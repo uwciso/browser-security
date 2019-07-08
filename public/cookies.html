@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <title>Browser Security Exercises</title>
+</head>
+<body>
+
+  <div class="banner main">
+    <h1>Safer Cookies<span class="resource"><a href="index.html">All Exercises</a></span></h1>
+  </div>
+
+  <div class="instr-header">
+    <h2>Instructions</h2>
+    <ol>
+      <li>
+        For these exercises, you'll need to edit the <code>cookie_directives</code> object in the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L12-L14" target="0">app.js</a> file.</li>
+      <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
+      </li>
+      <li>Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for more info on cookie options.
+      </li>
+    </ol>
+  </div>
+  <ol>
+    <li>
+      <p>Note that this app sets a 'newcookie' cookie with a value of 'chocolate-chip' on the initial response for the assets.html. In the Dev Tools console, use JavaScript to access this cookie. Now, add the appropriate directive to the cookie to prevent this type of access.</p>
+      <p>Reload the assets page and try accessing the cookie again through the console.</p>
+    </li>
+    <li>
+      <p>Check that this cookie is sent on subsequent requests to local (same-origin) resources (such as this page's stylesheet or image) by inspecting the <code>Cookie</code> request header. Now, disallow this cookie from being sent on requests <i>not</i> over https.</p>
+      <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</p>
+    </li>
+    <li>
+      <p>Tighten the scoping of this cookie by making sure it's <i>only</i> sent on requests to the assets.html page.</p>
+    </li>
+    <li>
+      <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests.<p>
+    </li>
+    <li>
+      <p>Finally, give this cookie an explicit expiration date (HINT: an easy way to provide a date value is to  use <code>new Date(Date.now + 1000)</code>).</p>
+    </li>
+      <p>Reload the assets page and check that the cookie reflects these updates.</p>
+    </li>
+  </ol>
+  <h2>Resources</h2>
+  <ul>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN on setting cookies</a>
+    </li>
+    <li>
+      <a href="https://expressjs.com/en/4x/api.html#res.cookie"target="0">Using cookies with Express.js</a> 
+    </li>
+  </ul>
+  <h2>Solutions</h2>
+  <p>View the <a href="https://github.com/uwciso/browser-security/blob/master/solutions.js" target="0">solutions.js</a> file.</p>
+</body>
+</html>

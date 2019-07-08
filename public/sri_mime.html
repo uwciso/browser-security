@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <title>Browser Security Exercises</title>
+</head>
+<body>
+
+  <div class="banner main">
+    <h1>Subresource Ingegrity (SRI) and MIME Types<span class="resource"><a href="index.html">All Exercises</a></span></h1>
+  </div>
+  <div class="instr-header">
+    <h2>Instructions</h2>
+    <ol>
+      <li>
+        Open the app.js file in a text editor.
+      </li>
+      <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
+      </li>
+    </ol>
+  </div>
+
+  <h2 class="first">Subresource Integrity (SRI)</h2>
+
+  <p>Right now, the assets page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file were modified, the browser would have no way to detect that.</p>
+  <ol>
+    <li>
+      <p>Add another layer of security for this file by supplying an <code>integrity</code> attribute on the <a href="https://github.com/uwciso/browser-security/blob/master/public/assets.html#L75" target="blank">script tag</a> of the public/assets.html file. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
+      <p>Reload the assets page and verify that the resource loads as expected.</p>
+    </li>
+    <li>
+      <p>Modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked by the browser? Verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can attempt to execute a jQuery selection in the console window, or, in Chrome Dev Tools, use the Source tab to see if that file is available.</p>
+    </li>
+    <li>
+      <p>Now, with the integrity attribute correctly applied, remove just the <code>crossorigin="anonymous"</code> attribute, and reload the assets page. Does the script resource load? Why or why not?</p>
+    </li>
+  </ol>
+  <h2>MIME Types</h2>
+
+  <ol>
+    <li>
+      <p>For each of the assets page's local resources, check the response to verify a <code>Content-Type</code> header was sent (use the Dev Tools Network tab).</p>
+    </li>
+    <li><p>Verify whether or not browser MIME sniffing has been explicitly disabled by the server (to prevent the browser potentially making its own guess at the resource's content type and ignoring information sent by the server). If it hasn't, fix this using Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> (you'll need to add a line in the app.js file).
+     Reload the assets page, and verify the presence of the appropriate response header (<code>X-Content-Type-Options: nosniff</code>).</p>
+    </li>
+  </ol>
+  
+  <h2>Resources</h2>
+  <ul>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity" target="0">SRI on MDN</a>
+    </li>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="0">MIME Types on MDN</a>
+    </li>
+  </ul>
+  <h2>Solutions</h2>
+  <p>See the <a href="https://github.com/uwciso/browser-security/blob/master/solutions.js" target="0">solutions.js</a> file.</p>
+</body>
+</html>
