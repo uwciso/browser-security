@@ -7,7 +7,6 @@ const app = express();
  Modify this object with your chosen CSP directives
 *****************************************************************************/
 const csp_directives = {
-  'default-src': ["*"],
 };
 /*****************************************************************************
  Also, uncomment the following app.use statement to use CSP for all requests
