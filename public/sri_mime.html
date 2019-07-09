@@ -19,6 +19,9 @@
       <li>
         Open the app.js file in a text editor.
       </li>
+      <li>
+        Open the public/assets.html file in a text editor.
+      </li>
       <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
       </li>
     </ol>
@@ -29,11 +32,11 @@
   <p>Right now, the assets page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file were modified, the browser would have no way to detect that.</p>
   <ol>
     <li>
-      <p>Add another layer of security for this file by supplying an <code>integrity</code> attribute on the <a href="https://github.com/uwciso/browser-security/blob/master/public/assets.html#L75" target="blank">script tag</a> of the public/assets.html file. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
-      <p>Reload the assets page and verify that the resource loads as expected.</p>
+      <p>Add another layer of security for this file by supplying an <code>integrity</code> attribute on the corresponding <a href="https://github.com/uwciso/browser-security/blob/master/public/assets.html#L76" target="blank">script tag</a> of the public/assets.html file. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).</p>
+      <p>Reload the assets page and verify that the resource loads as expected. Is this a CORS request? How can you tell?</p>
     </li>
     <li>
-      <p>Modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked by the browser? Verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). You can attempt to execute a jQuery selection in the console window, or, in Chrome Dev Tools, use the Source tab to see if that file is available.</p>
+      <p>Modify the value of the <code>integrity</code> attribute so the browser's calculated value will not match. Has the resource been blocked by the browser? Verifying this can be tricky, since the Network tab will show the file as having been loaded (which is true, since the file had to be downloaded in order for the browser to check its hash). What are three alternate ways to verify that this script has been blocked?</p>
     </li>
     <li>
       <p>Now, with the integrity attribute correctly applied, remove just the <code>crossorigin="anonymous"</code> attribute, and reload the assets page. Does the script resource load? Why or why not?</p>

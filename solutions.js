@@ -1,10 +1,16 @@
 /*****************************************************************************
-Content Security Policy
+ Content Security Policy
 *****************************************************************************/
 
 // (1)
 const csp_directives = {
   'default-src': ["'self'"],
+  /*
+    Note: The web page itself will show you whether the inline scripts execute or not,
+    but you can also verify this by inspecting the "Console" tab of Dev Tools, which
+    will provide you more detailed info about the blocked script and how to allow 
+    it if you choose to.
+  */
 };
 
 // (2)
@@ -70,7 +76,42 @@ const csp_directives = {
   'img-src': ['*'],
   'script-src': ["*", 'code.jquery.com', "'unsafe-inline'"],
 };
+  /*
+    Note: Of the two methods to allow inline scripts (which, again, is not advisable), the first is
+    preferable, in that it allows two specific inline scripts by supplying their hashes. Any other
+    inline scripts would be blocked. Using the "unsafe-inline" method is, of course, unsafe because
+    it opens the page up to *any* inline script.
+  */
 
 /*****************************************************************************
-Content Security Policy
+ Subresource Ingegrity (SRI)
 *****************************************************************************/
+// (1)
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+  /*
+    This is a CORS request, since a crossorigin="anonymous" attribute is included on the script tag,
+    and the jQuery CDN provided an "Access-Control-Allow-Origin: *" header. You can verify CORS by
+    inspecting the request for an "Origin" header.
+  */
+
+  // (2)
+  /* 
+    To verify that the script has been blocked because its integrity value doesn't match, you can 
+    1. Try to excecute a jQuery selection in the Dev Tools Console tab
+    2. Observe the "Failed to find a valid" error message in the Console tab (Chrome)
+    3. Use the Sources tab to see whether the jQuery resource is available
+  */
+  // (3)
+  /*
+    You'll see that the file does not load, because the request must be CORS enabled. This makes sense
+    when you consider that in order for the integrity to be checked, the browser must have full 
+    programmatic access to it.
+  */
+/*****************************************************************************
+ MIME Types 
+*****************************************************************************/
+  // (2)
+  Use
+  app.use(helmet.noSniff())
+after the attach_cookie method, then verify the presence of the "X-ContentT-Type-Options: nosniff" in the 
+response headers of the assets.html resource.
