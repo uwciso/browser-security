@@ -1,10 +1,22 @@
+const express = require('express');
+const path = require('path');
+const helmet = require('helmet');
+const app = express();
+
 /*****************************************************************************
  Modify this object with your chosen CSP directives
 *****************************************************************************/
 const csp_directives = {
   'default-src': ["*"],
 };
-/*****************************************************************************/
+/*****************************************************************************
+ Also, uncomment the following app.use statement to use CSP for all requests
+*****************************************************************************/
+/*
+app.use(helmet.contentSecurityPolicy({
+  directives: csp_directives
+}));
+*/
 
 /*****************************************************************************
  Modify this object with your chosen cookie directives 
@@ -13,15 +25,6 @@ const cookie_directives = {
 
 }
 /*****************************************************************************/
-
-const express = require('express');
-const path = require('path');
-const helmet = require('helmet');
-const app = express();
-
-app.use(helmet.contentSecurityPolicy({
-  directives: csp_directives
-}));
 
 function attach_cookie(url, cookie, value) {
   return function(req, res, next) {
