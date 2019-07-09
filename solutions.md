@@ -17,7 +17,7 @@ const csp_directives = {
   'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
 };
 ```
-The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin header` with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective `<link>` tag on the asset page. Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
+The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective `<link>` tag on the asset page. Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
 
 ### (3)
 ```
@@ -98,8 +98,4 @@ You'll see that the file does not load, because the request must be CORS enabled
 
 ## MIME Types 
 ### (2)
-Use
-```
-app.use(helmet.noSniff())
-```
-after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` in the response headers of the assets.html resource.
+Use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` in the response headers of the assets.html resource.
