@@ -102,16 +102,16 @@ Use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify th
 
 ## Safer Cookies
 ### (1)
-Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `newcookie: newcookie-val`. Update the cookie directives object:
+Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `foo: bar`. Update the cookie directives object:
 ```
 const cookie_directives = {
   httpOnly: true
 }
 ```
-Issue the `document.cookie` in the Dev Tools console again, and see that the result is now only `""`.
+Now, issue the `document.cookie` command in the Dev Tools console again, and see that the result is now only `""`.
 
 ### (2)
-To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie: newcookie=newcookie-val` request header (you can also check the "Cookies" sub menu in the Network tab).
+To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie: foo=bar` request header (you can also check the "Cookies" sub menu in the Network tab).
 Now, add the "secure" directive to the cookie_directives object to allow cookies *only* on https requests:
 ```
 const cookie_directives = {
