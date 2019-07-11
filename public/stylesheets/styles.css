@@ -3,8 +3,11 @@
   margin-left: -12px;
   padding: 9px 21px;
   color: white;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 4px;
+}
+.card {
+  margin-top: 0 !important;
 }
 .banner.main {
   margin-bottom: 0;

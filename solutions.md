@@ -88,10 +88,10 @@ Of the two methods to allow inline scripts (which, again, is not advisable), the
 This is a CORS request, since a `crossorigin="anonymous"` attribute is included on the script tag, and the jQuery CDN provided an  `Access-Control-Allow-Origin: *` header. You can verify CORS by inspecting the request for the presence of an "Origin" header.
 
 ### (2)
-To verify that the script has been blocked because its integrity value doesn't match, you can 
+To verify that the script has been blocked because its integrity value doesn't match, you can:
 1. Try to execute a jQuery selection in the Dev Tools Console tab
 2. Observe the "Failed to find a valid" error message in the Console tab (Chrome)
-3. Use the Sources tab to see whether the jQuery resource is available
+3. Use the (Chrome) Sources tab to see whether the jQuery resource is available
 
 ### (3)
 You'll see that the file does not load, because the request must be CORS enabled. This makes sense when you consider that in order for the integrity value of the resource to be checked by the browser, it (the browser) must have full programmatic access to the resource.
@@ -99,3 +99,48 @@ You'll see that the file does not load, because the request must be CORS enabled
 ## MIME Types 
 ### (2)
 Use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` in the response headers of the assets.html resource.
+
+## Safer Cookies
+### (1)
+Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `newcookie: newcookie-val`. Update the cookie directives object:
+```
+const cookie_directives = {
+  httpOnly: true
+}
+```
+Issue the `document.cookie` in the Dev Tools console again, and see that the result is now only `""`.
+
+### (2)
+To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie: newcookie=newcookie-val` request header (you can also check the "Cookies" sub menu in the Network tab).
+Now, add the "secure" directive to the cookie_directives object to allow cookies *only* on https requests:
+```
+const cookie_directives = {
+  secure: true
+}
+```
+Check same-origin requests to verify that this cookie is no longer being sent.
+
+### (3)
+```
+const cookie_directives = {
+  path: '/assets.html'
+}
+```
+Note that on the initial page load, each asset's response will have a `Set-Cookie` header. But, on subsequent page loads, you should see that only the assets.html will have a `Cookie` header. 
+
+At any time, you can clear the cookies from your browser for this specific app by using the "Storage" tab in Firefox's Dev Tools, or "Application" in Chrome.
+
+### (4)
+```
+const cookie_directives = {
+  sameSite: 'Strict'
+}
+```
+
+### (5)
+Use JS to create a new Date object set to one minute in the future:
+```
+const cookie_directives = {
+  expires: new Date(Date.now() + 60000)
+}
+```
