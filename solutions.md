@@ -98,7 +98,7 @@ You'll see that the file does not load, because the request must be CORS enabled
 
 ## MIME Types 
 ### (2)
-Use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` in the response headers of the assets.html resource.
+Use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` response header.
 
 ## Safer Cookies
 ### (1)
