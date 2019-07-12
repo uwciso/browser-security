@@ -19,7 +19,7 @@ Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which auto
 
 2. Point your browser to [localhost:3100](http://localhost:3100) 
 
-3. To do the exercises, you'll need to open up the app.js (and, eventually, assets.html) files in your text editor of choice. This app uses [nodemon](https://nodemon.io/), so as you make changes to files, your browser should automatically reload.
+3. To do the exercises, you'll need to open up the app.js (and, eventually, assets.html) files in your text editor of choice.
 
 ## Resources
 * [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
