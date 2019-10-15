@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/a11y-dark.css" />
+  <script type="application/javascript" src="js/highlight.pack.js"></script> 
   <title>Exercises: Assets</title>
 </head>
 <body>
@@ -19,9 +21,10 @@
       <ul>
         <li>
           <p class="item">Inline script A</p>
+          <span id='inlineA'>
           <span id='inline-msg' class='blocked'>blocked</span>
           <script type="text/javascript">
-            // replaces span to reflect script having executed
+            // Inline A: replaces span to reflect script having executed
             var new_span = document.createElement('span');
             new_span.setAttribute('class', 'allowed');
             var new_content = document.createTextNode('allowed');
@@ -30,37 +33,59 @@
             var parent_li = current_span.parentNode;
             parent_li.replaceChild(new_span, current_span);
           </script>
+          </span>
+          <pre>
+            <code class="source" id="source-inlineA">source view unavailable</code>
+          </pre>
         </li>
 
         <li>
           <p class="item">Inline script B</p>
-          <span id='inline2-msg' class='blocked'>blocked</span>
+          <span id='inlineB'>
+          <span id='inlineB-msg' class='blocked'>blocked</span>
           <script type="text/javascript">
-            // replaces span to reflect script having executed
+            // Inline B: replaces span to reflect script having executed
             var new_span = document.createElement('span');
             new_span.setAttribute('class', 'allowed');
             var new_content = document.createTextNode('allowed');
             new_span.appendChild(new_content);
-            var current_span = document.getElementById('inline2-msg');
+            var current_span = document.getElementById('inlineB-msg');
             var parent_li = current_span.parentNode;
             parent_li.replaceChild(new_span, current_span);
           </script>
-        </li>
-        <li>
-          <p class="item">Local script</p>
-          <span id='external-msg' class='blocked'>blocked</span>
-          <script type="application/javascript" src="js/local.js"></script>
+          </span>
+          <pre>
+            <code class="source" id="source-inlineB">source view unavailable</code>
+          </pre>
+	</li>
+	<li>
+  	  <p class="item">Local script</p>
+  	  <span id='localScript'>
+  	    <span id='external-msg' class='blocked'>blocked</span>
+            <script type="application/javascript" src="js/local.js"></script>
+  	  </span>
+  	  <pre class="source" id="source-localScript">source view unavailable</pre>
         </li>
         <li class='images'>
           <p class='item'>Images</p>
-          <div class='all-images'>
+          <div classz='all-images'>
             <div class="">
               <label for='local'>Local</label>
+              <span id='localImage'>
               <img id='local' src='img/uw-suz.jpg'>
+              </span>
+              <pre>
+              <code class="source" id="source-localImage">source view unavailable</code>
+              </pre>
             </div>
             <div class="">
               <label for='external'>External</label>
+              <span id='externalImage'>
               <img id='external' src="https://staff.washington.edu/pgraff/browser-security/guggenheim.png" >
+              </span>
+              <pre>
+              <code class="source" id="source-externalImage">source view unavailable</code>
+              </pre>
             </div>
           </div>
         </li>

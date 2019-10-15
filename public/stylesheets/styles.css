@@ -192,3 +192,17 @@ p.instructions {
 .card-body {
   background-color: #f7f6f6;
 }
+.source {
+  margin-top: .2em;
+  border: 1px solid black;
+  width: fit-content;
+  padding-right: 2em;
+  font-size: x-small;
+  background-color: #444;
+  overflow-x: auto;
+  color: white;
+}
+.code-comment {
+  color: cyan; 
+  /* font-weight: bolder; */
+}

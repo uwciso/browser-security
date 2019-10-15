@@ -33,4 +33,4 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public')); 
 
-app.listen(3100, () => console.log('App is running at localhost:3100'));
+app.listen(3100, '0.0.0.0', () => console.log('App is running at localhost:3100'));
