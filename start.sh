@@ -15,6 +15,7 @@ if [[ -n "$FILE_BROWSER_USER" && -n "$FILE_BROWSER_PASSWORD" ]]; then
   mkdir editor
   pushd editor
   ln -s ../app.js ./app.js
+  ln -s ../public/assets.html ./assets.html
   popd
  
   filebrowser config init
