@@ -21,4 +21,7 @@ window.onload = function() {
 	setToSource("localScript", "source-localScript");
 	setToSource("localImage", "source-localImage");
 	setToSource("externalImage", "source-externalImage");
+	setToSource("local-stylesheet", "source-local-stylesheet");
+	setToSource("bootstrap-cdn", "source-bootstrap-cdn");
+	setToSource("jquery-cdn", "source-jquery-cdn");
 };

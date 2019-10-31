@@ -202,3 +202,6 @@ p.instructions {
   overflow-x: auto;
   color: white;
 }
+img#local, img#external {
+  margin-bottom: 10px;
+}

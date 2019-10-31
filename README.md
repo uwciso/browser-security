@@ -118,6 +118,12 @@ externalise the filebrowser credentials from this project
    docker kill $(docker ps -q); docker rm $(docker ps -q -a)
    ```
 
+* With an existing volume, kill and remove all containers, and then rebuild a new one (here tagged as "new")
+
+   ```bash
+   docker kill $(docker ps -q); docker rm $(docker ps -q -a);   docker build --tag=browser-security:new .; docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:new
+   ```
+
 ## Resources
 * [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
 * [Setting response cookies with Express](https://expressjs.com/en/4x/api.html#res.cookie)
