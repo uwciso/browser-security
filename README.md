@@ -33,7 +33,7 @@ externalise the filebrowser credentials from this project
 
 3. `docker volume create browser-sec-vol`
 
-4. Replace `<TAG>` with your tag name or #:
+4. Build the container. Replace `<TAG>` with your tag name or #:
 
    ```bash
    docker build --tag=browser-security:<TAG> .
@@ -72,6 +72,8 @@ externalise the filebrowser credentials from this project
    exit
    ```
 
+11. Kill the 
+
 11. Re-run the container, this time mounting the volume read-only:
 
    ```bash
@@ -80,6 +82,37 @@ externalise the filebrowser credentials from this project
 
 ## Usage - Docker
 1. After running the container (see above), browse to the exercises at [http://localhost:4000](http://localhost:4000) and the filebrowser at [http://localhost:4001](http://localhost:4001) 
+
+## Useful Docker commands
+* List Docker containers
+
+   ```bash
+   docker container ls
+   ```
+
+   or
+
+   ```bash
+   docker ps
+   ```
+
+* Stop an active container
+
+   ```bash
+   docker container kill [container ID]
+   ```
+
+* Remove a container
+
+   ```bash
+   docker container rm [container ID]
+   ```
+
+* (As root) stop and remove all containers
+
+   ```bash
+   docker kill $(docker ps -q); docker rm $(docker ps -q -a)
+   ```
 
 ## Resources
 * [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
