@@ -202,7 +202,3 @@ p.instructions {
   overflow-x: auto;
   color: white;
 }
-.code-comment {
-  color: cyan; 
-  /* font-weight: bolder; */
-}

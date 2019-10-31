@@ -31,7 +31,11 @@ externalise the filebrowser credentials from this project
 
 2. `cd browser-security`
 
-3. `docker volume create browser-sec-vol`
+3. Create a Docker volume (file system)
+
+   ```
+   docker volume create browser-sec-vol
+   ```
 
 4. Build the container. Replace `<TAG>` with your tag name or #:
 

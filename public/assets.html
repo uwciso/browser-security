@@ -21,8 +21,8 @@
       <ul>
         <li>
           <p class="item">Inline script A</p>
-          <span id='inlineA'>
-          <span id='inline-msg' class='blocked'>blocked</span>
+          <div id='inlineA'>
+          <div id='inline-msg' class='blocked'>blocked</div>
           <script type="text/javascript">
             // Inline A: replaces span to reflect script having executed
             var new_span = document.createElement('span');
@@ -33,7 +33,7 @@
             var parent_li = current_span.parentNode;
             parent_li.replaceChild(new_span, current_span);
           </script>
-          </span>
+          </div>
           <pre>
             <code class="source" id="source-inlineA">source view unavailable</code>
           </pre>
