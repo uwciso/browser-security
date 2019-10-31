@@ -35,48 +35,48 @@ externalise the filebrowser credentials from this project
 
 4. Replace `<TAG>` with your tag name or #:
 
-```bash
-docker build --tag=browser-security:<TAG> .
-```
+   ```bash
+   docker build --tag=browser-security:<TAG> .
+   ```
 
 5. Run the container with the volume mounted:
 
-```bash
-docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
-```
+   ```bash
+   docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
+   ```
 
 6. Run a shell on the container (assuming this is the only docker container running presently): 
 
-```bash
-docker exec -it $(docker ps -q) /bin/bash
-```
+   ```bash
+   docker exec -it $(docker ps -q) /bin/bash
+   ```
 
 7. Create a new file called /dockervol/settings e.g. with vim: 
 
-```bash
-vi /dockervol/settings
-```
+   ```bash
+   vi /dockervol/settings
+   ```
 
 8. Add the following content to the `settings` file, replacing the values with your desired username and password for accessing the file browser tool:
 
-```
-FILE_BROWSER_USER="username"
-FILE_BROWSER_PASSWORD="password"
-```
+   ```
+   FILE_BROWSER_USER="username"
+   FILE_BROWSER_PASSWORD="password"
+   ```
 
 9. Save the file and exit vim
 
 10. Unmount the docker volume
 
-```bash
-exit
-```
+   ```bash
+   exit
+   ```
 
 11. Re-run the container, this time mounting the volume read-only:
 
-```bash
-docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
-```
+   ```bash
+   docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
+   ```
 
 12. 
 
