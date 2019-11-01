@@ -151,6 +151,7 @@ p.instructions {
 .item {
   font-weight: bold;
   display: inline-block;
+  margin-bottom: 7px;
 }
 .images img {
   width: 150px;
@@ -191,4 +192,17 @@ p.instructions {
 }
 .card-body {
   background-color: #f7f6f6;
+}
+.source {
+  margin-top: .2em;
+  border: 1px solid black;
+  width: fit-content;
+  padding-right: 2em;
+  font-size: x-small;
+  background-color: #444;
+  overflow-x: auto;
+  color: white;
+}
+img#local, img#external {
+  margin-bottom: 10px;
 }
