@@ -93,7 +93,9 @@ externalise the filebrowser credentials from this project
 
 ## Useful Docker commands
 * List Docker containers  
-  `docker container ls` or `docker ps`
+  `docker container ls`  
+   or  
+   `docker ps`
 
 * Stop an active container  
    `docker container kill [container ID]`
