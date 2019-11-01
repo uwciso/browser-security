@@ -31,62 +31,35 @@ externalise the filebrowser credentials from this project
 
 2. `cd browser-security`
 
-3. Create a Docker volume (file system)
+3. Create a Docker volume (file system)  
+   `docker volume create browser-sec-vol`
 
-   ```
-   docker volume create browser-sec-vol
-   ```
+4. Build the container. Replace `<TAG>` with your tag name or #  
+   `docker build --tag=browser-security:<TAG> . `
 
-4. Build the container. Replace `<TAG>` with your tag name or #:
+5. Run the container with the volume mounted  
+   `docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
 
-   ```bash
-   docker build --tag=browser-security:<TAG> .
-   ```
+6. Run a shell on the container (assuming this is the only docker container running presently)  
+   `docker exec -it $(docker ps -q) /bin/bash`
 
-5. Run the container with the volume mounted:
+7. Create a new file called /dockervol/settings e.g. with vim  
+   `vi /dockervol/settings`
 
-   ```bash
-   docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
-   ```
-
-6. Run a shell on the container (assuming this is the only docker container running presently): 
-
-   ```bash
-   docker exec -it $(docker ps -q) /bin/bash
-   ```
-
-7. Create a new file called /dockervol/settings e.g. with vim: 
-
-   ```bash
-   vi /dockervol/settings
-   ```
-
-8. Add the following content to the `settings` file, replacing the values with your desired username and password for accessing the file browser tool:
-
-   ```
-   FILE_BROWSER_USER="username"
-   FILE_BROWSER_PASSWORD="password"
-   ```
+8. Add the following content to the `settings` file, replacing the values with your desired username and password for accessing the file browser tool  
+   `FILE_BROWSER_USER="username"  
+    FILE_BROWSER_PASSWORD="password"`
 
 9. Save the file and exit vim
 
-10. Unmount the docker volume
+10. Unmount the docker volume  
+   `exit`
 
-   ```bash
-   exit
-   ```
+11. Shut down the container  
+   `docker container kill [container id]`
 
-11. Shut down the container
-   
-   ```bash
-   docker container kill [container id]
-   ```
-
-11. Re-run the container, this time mounting the volume as read-only:
-
-   ```bash
-   docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
-   ```
+11. Re-run the container, this time mounting the volume as read-only  
+   `docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
 
 ## Usage - Docker
 1. After running the container (see above), browse to the exercises at [http://localhost:4000](http://localhost:4000) and the filebrowser at [http://localhost:4001](http://localhost:4001) 
