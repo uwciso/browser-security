@@ -25,19 +25,13 @@
       <ul>
         <li>
           <p class="item">Inline script A</p>
-          <span id='inline-msg' class='blocked'>blocked</span>
-          <!--script indenting off to account for way in which it's rerendered with pre and code tags-->
+          <span id='inlineA-msg' class='blocked'>blocked</span>
           <div id='inlineA'>
-  <script type="application/javascript">
-    // Inline A: replaces span to reflect script having executed
-    var new_span = document.createElement('span');
-    new_span.setAttribute('class', 'allowed');
-    var new_content = document.createTextNode('allowed');
-    new_span.appendChild(new_content);
-    var current_span = document.getElementById('inline-msg');
-    var parent_li = current_span.parentNode;
-    parent_li.replaceChild(new_span, current_span);
-  </script>
+            <script type="application/javascript">
+              var elem = document.getElementById('inlineA-msg');
+              elem.innerText = 'allowed';
+              elem.setAttribute('class', 'allowed');
+            </script>
           </div>
           <pre><code class="source" id="source-inlineA">source view unavailable</code></pre>
         </li>
@@ -45,27 +39,20 @@
         <li>
           <p class="item">Inline script B</p>
           <span id='inlineB-msg' class='blocked'>blocked</span>
-          <!--script indenting off to account for way in which it's rerendered with pre and code tags-->
           <div id='inlineB'>
-  <script type="application/javascript">
-    // Inline B: replaces span to reflect script having executed
-    var new_span = document.createElement('span');
-    new_span.setAttribute('class', 'allowed');
-    var new_content = document.createTextNode('allowed');
-    new_span.appendChild(new_content);
-    var current_span = document.getElementById('inlineB-msg');
-    var parent_li = current_span.parentNode;
-    parent_li.replaceChild(new_span, current_span);
-  </script>
+            <script type="application/javascript">
+              var elem = document.getElementById('inlineB-msg');
+              elem.innerText = 'allowed';
+              elem.setAttribute('class', 'allowed');
+            </script>
           </div>
           <pre><code class="source" id="source-inlineB">source view unavailable</code></pre>
 	      </li>
 	      <li>
           <p class="item">Local script</p>
-            <span id='external-msg' class='blocked'>blocked</span>
-            <!--script indenting off to account for way in which it's rerendered with pre and code tags-->
+            <span id='local-script-msg' class='blocked'>blocked</span>
             <div id='localScript'> 
-  <script type="application/javascript" src="js/local.js"></script>
+              <script type="application/javascript" src="js/local.js"></script>
             </div>
           <pre class="source" id="source-localScript">source view unavailable</pre>
         </li>
@@ -74,16 +61,15 @@
           <div classz='all-images'>
             <div class="">
               <label for='local'>Local</label>
-              <!--img indenting off to account for way in which it's rerendered with pre and code tags-->
               <div id='localImage'>
-  <img id='local' src='img/uw-suz.jpg'>
+                <img id='local' src='img/uw-suz.jpg'>
               </div>
               <pre><code class="source" id="source-localImage">source view unavailable</code></pre>
             </div>
             <div class="">
               <label for='external'>External</label>
               <div id='externalImage'>
-  <img id='external' src="https://staff.washington.edu/pgraff/browser-security/guggenheim.png" >
+                <img id='external' src="https://staff.washington.edu/pgraff/browser-security/guggenheim.png">
               </div>
               <pre><code class="source" id="source-externalImage">source view unavailable</code></pre>
             </div>
@@ -94,17 +80,17 @@
       </p>
       <ul>
         <li>
-          <p class="item">Local stylesheet</p><span class="subtext"> (styles.css)</span>
+          <p class="item">Local stylesheet</p>
           <pre><code class="source" id="source-local-stylesheet">source view unavailable</code></pre>
         </li>
         <li>
-          <p class="item">Bootstrap stylesheet, via external CDN</p><span class="subtext"> (bootstrap.min.css)</span></li>
+          <p class="item">Bootstrap stylesheet, via external CDN</p></li>
           <pre><code class="source" id="source-bootstrap-cdn">source view unavailable</code></pre>
         <li>
-          <p class="item">jQuery, via external CDN</p><span class="subtext"> (jquery-3.3.1.min.js)</span>
-          <span id="jquery-cdn">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-          </span>
+          <p class="item">jQuery, via external CDN</p>
+          <div id="jquery-cdn">
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+          </div>
           <pre><code class="source" id="source-jquery-cdn">source view unavailable</code></pre>
         </li>
       </ul>

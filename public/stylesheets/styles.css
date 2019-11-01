@@ -151,6 +151,7 @@ p.instructions {
 .item {
   font-weight: bold;
   display: inline-block;
+  margin-bottom: 7px;
 }
 .images img {
   width: 150px;

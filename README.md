@@ -76,9 +76,13 @@ externalise the filebrowser credentials from this project
    exit
    ```
 
-11. Kill the 
+11. Shut down the container
+   
+   ```bash
+   docker container kill [container id]
+   ```
 
-11. Re-run the container, this time mounting the volume read-only:
+11. Re-run the container, this time mounting the volume as read-only:
 
    ```bash
    docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>
@@ -89,16 +93,11 @@ externalise the filebrowser credentials from this project
 
 ## Useful Docker commands
 * List Docker containers
-
-   ```bash
-   docker container ls
-   ```
+  `docker container ls`
 
    or
 
-   ```bash
-   docker ps
-   ```
+   `docker ps`
 
 * Stop an active container
 
