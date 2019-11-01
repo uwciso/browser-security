@@ -92,8 +92,7 @@ externalise the filebrowser credentials from this project
 1. After running the container (see above), browse to the exercises at [http://localhost:4000](http://localhost:4000) and the filebrowser at [http://localhost:4001](http://localhost:4001) 
 
 ## Useful Docker commands
-* List Docker containers
-
+* List Docker containers  
   `docker container ls` or `docker ps`
 
 * Stop an active container
