@@ -9,6 +9,7 @@ var setToSource = function(id, displayId) {
 	var init_spaces = code.match(/^\s*/)[0].length;
 	var code_array = code.split('\n');
 	var formatted_code = '';
+	// fix indenting
 	code_array.forEach(function (str) {
 		formatted_code += str.slice(init_spaces-3, str.length) + '\n';
 	});
