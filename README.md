@@ -29,7 +29,7 @@ Make sure you have [Docker](https://www.docker.com/) installed.
 
 2. `cd browser-security`
 
-3. Build the container. Replace `<TAG>` with your tag name or #  
+3. Build the container. Replace `<TAG>` with your tag name or version #  
    `docker build --tag=browser-security:<TAG> . `
 
 4. Run the container, passing through Filebrowser credentials as environment variables, and using your selected `<TAG>` from previous step  
@@ -47,7 +47,7 @@ externalise the filebrowser credentials from this project
 3. Create a Docker volume (file system)  
    `docker volume create browser-sec-vol`
 
-4. Build the container. Replace `<TAG>` with your tag name or #  
+4. Build the container. Replace `<TAG>` with your tag name or version #  
    `docker build --tag=browser-security:<TAG> . `
 
 5. Run the container with the volume mounted  
