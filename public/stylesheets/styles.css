@@ -206,3 +206,9 @@ p.instructions {
 img#local, img#external {
   margin-bottom: 10px;
 }
+.sublist {
+  list-style-type: lower-alpha;
+}
+ol.extra-space > li:not(:last-of-type) {
+  padding-bottom: 10px;
+}

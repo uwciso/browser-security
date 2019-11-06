@@ -16,24 +16,27 @@
 
   <div class="instr-header">
     <h2>Instructions</h2>
-    <ol>
+    <ol class="extra-space">
       <li>
-        Open the app.js file in a text editor. For these exercises, you'll be editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L26-L28" target="0"><code>cookie_directives</code></a> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
+        Access the server's app.js file with the File Browser. For these exercises, you'll be editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L24-L26" target="0"><code>cookie_directives</code></a> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
       <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
       </li>
     </ol>
   </div>
-  <ol>
-    <li>
-      <p>Note that on the initial response of the assets page, this app sets a 'foo' cookie with a value of 'bar'.</p> 
-      <p>In the Dev Tools console, use JavaScript to access this cookie.</p>
-      <p>Now, add the appropriate directive to the cookie to prevent this type of access.</p>
-      <p>Reload the assets page and try accessing the cookie again through the console.</p>
+  <ol class="extra-space">
+    <li>Note that on the initial response of the assets page, this app sets a 'foo' cookie with a value of 'bar'.
+      <ol class="sublist">
+        <li>In the Dev Tools console, use JavaScript to access this cookie.</li>
+        <li>Now, add the appropriate directive to the cookie to prevent this type of access.</li>
+        <li>Reload the assets page and try accessing the cookie again through the console.</li>
+      </ol> 
     </li>
-    <li>
-      <p>Verify that the cookie is sent by the browser on subsequent requests to local (same-origin) resources (such as this page's stylesheet or local image).</p>
-      <p>Now, disallow this cookie from being sent on requests <i>not</i> over https.</p>
-      <p>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</p>
+    <li>Verify that the cookie is sent by the browser on subsequent requests to local (same-origin) resources (such as this page's stylesheet or local image).
+      <ol class="sublist">
+        <li>Disallow this cookie from being sent on requests <i>not</i> over https.</li>
+        <li>Reload the assets page, then check those same requests to verify this cookie was not sent (since this app is making those local requests over http rather than https).</li>
+      </ol>
+      
     </li>
     <li>
       <p>Tighten the scoping of this cookie by making sure it's <i>only</i> sent on requests to the assets.html page.</p>
@@ -41,10 +44,10 @@
     <li>
       <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests.<p>
     </li>
-    <li>
-      <p>Finally, give this cookie an expiration date one minute from now. Note that Express expects the value of the "expires" key to be of <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">type Date</a>). 
-    </li>
-      <p>Reload the assets page and check that the set cookie shows this expiration date. Wait more than a minute then reload the page again. Was the cookie sent on the request?</p>
+    <li>Finally, give this cookie an expiration date one minute from now. Note that Express expects the value of the "expires" key to be of <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">type Date</a>). 
+      <ol class="sublist">
+        <li>Reload the assets page and check that the set cookie shows this expiration date. Wait more than a minute then reload the page again. Was the cookie sent on the request?</li>
+      </ol>
     </li>
   </ol>
   <h2>Resources</h2>
@@ -56,7 +59,5 @@
       <a href="https://expressjs.com/en/4x/api.html#res.cookie"target="0">Using cookies with Express.js</a> 
     </li>
   </ul>
-  <h2>Solutions</h2>
-  <p>View the <a href="https://github.com/uwciso/browser-security/blob/master/solutions.md#safer-cookies" target="0">solutions.md</a> file.</p>
 </body>
 </html>

@@ -21,8 +21,21 @@ Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which auto
 
 3. To do the exercises, you'll need to open up the app.js (and, eventually, assets.html) files in your text editor of choice.
 
-
 ## Installation - Docker
+
+Make sure you have [Docker](https://www.docker.com/) installed.
+
+1. `git clone https://github.com/uwciso/browser-security.git`
+
+2. `cd browser-security`
+
+3. Build the container. Replace `<TAG>` with your tag name or #  
+   `docker build --tag=browser-security:<TAG> . `
+
+4. Run the container, passing through Filebrowser credentials as environment variables, and using your selected <TAG> from previous step 
+   `docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
+
+## Installation - Docker, with externalized Filebrowser credentials
 
 Make sure you have [Docker](https://www.docker.com/) installed.  Note that this is somewhat complicated in order to 
 externalise the filebrowser credentials from this project
@@ -79,8 +92,8 @@ externalise the filebrowser credentials from this project
 * Stop and remove all containers  
   `docker kill $(docker ps -q); docker rm $(docker ps -q -a)`
 
-* With an existing volume, kill and remove all containers, and then rebuild a new one (here tagged as "new")  
-  `docker kill $(docker ps -q); docker rm $(docker ps -q -a);   docker build --tag=browser-security:new .; docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:new`
+* With an existing volume, kill and remove all containers, and then rebuild a new one (here tagged as "new", and with File Browser creds pass through as env variables)  
+  `docker kill $(docker ps -q); docker rm $(docker ps -q -a);   docker build --tag=browser-security:new .; docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:new`
 
 ## Resources
 * [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
