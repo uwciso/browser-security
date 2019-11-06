@@ -32,7 +32,7 @@ Make sure you have [Docker](https://www.docker.com/) installed.
 3. Build the container. Replace `<TAG>` with your tag name or #  
    `docker build --tag=browser-security:<TAG> . `
 
-4. Run the container, passing through Filebrowser credentials as environment variables, and using your selected <TAG> from previous step 
+4. Run the container, passing through Filebrowser credentials as environment variables, and using your selected `<TAG>` from previous step 
    `docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
 
 ## Installation - Docker, with externalized File Browser credentials
