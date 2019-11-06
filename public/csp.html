@@ -41,8 +41,14 @@
         <li>In addition to all stylesheets and local (non-inline) scripts, allow <i>all</i> images to be loaded.</li>
         <li>In addition to all stylesheets and images, allow <i>only</i> scripts from the code.jquery.com CDN.</li>
         <li>Now, allow scripts from the jQuery CDN as well as any local scripts (but still block all inline scripts).</li>
-        <li>In addition to scripts from the jQuery CDN and local scripts, allow inline script A by using a hash (HINT: When refusing to run a script, Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message).</li>
-        <li>Find two ways in which to allow <i>both</i> inline scripts as well as all other assets requested by the page. Is one method preferable over the other?</li>
+        <li>In addition to scripts from the jQuery CDN and local scripts, allow inline script A by using a hash.
+          
+          <p class="note">Note: When refusing to run a script, Chrome Dev Tools will provide the base64 value of the script's SHA256 hash in its console error message. Alternatively, you can calculate the hash yourself using an online tool like <a href="https://report-uri.com/home/hash" target="blank">this one</a>, but you need to be careful to include <i>everything</i> between the script tags (including whitespace characters, etc.). If you're not running Chrome or in the mood to do this, the hash for inline script A is <code>sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk=</code></p>
+        </li>
+        <li>Find two ways in which to allow <i>both</i> inline scripts as well as all other assets requested by the page. Is one method preferable over the other?
+          
+          <p class="note">Note: See previous challenge regarding obtaining a script's hash. The hash of inline script B is <code>sha256-ktXNNbajyvb1elC7TIqtLmLapqNler4nyCe5KEGgSG8=</code></p>
+        </li>
       </ol>
     </div>
     <div class="table-instr">

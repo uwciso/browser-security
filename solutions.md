@@ -17,7 +17,7 @@ const csp_directives = {
   'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
 };
 ```
-The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective [`<link>` tag on the assets page](https://github.com/uwciso/browser-security/blob/master/public/assets.html#L7). Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
+The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective [`<link>` tag on the assets page](https://github.com/uwciso/browser-security/blob/master/public/assets.html#L8). Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
 
 ### (3)
 ```
@@ -54,7 +54,7 @@ const csp_directives = {
   'default-src': ["'self'"],
   'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
   'img-src': ['*'],
-  'script-src': ["'self'", 'code.jquery.com', "'sha256-P6J4rdeeZW5IM5/jC6tfP9TdUnvOLXn1WuL2HDBlVaI='"],
+  'script-src': ["'self'", 'code.jquery.com', "'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk='"],
 };
 ```
 
@@ -64,7 +64,7 @@ const csp_directives = {
   'default-src': ["'self'"],
   'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
   'img-src': ['*'],
-  'script-src': ["*", 'code.jquery.com', "'sha256-P6J4rdeeZW5IM5/jC6tfP9TdUnvOLXn1WuL2HDBlVaI='", "'sha256-Xug6E/AiwGZUawBd+oAJTiLje3HICQrEKWVAnR8+qRg='"],
+  'script-src': ["*", 'code.jquery.com', "'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk='", "'sha256-ktXNNbajyvb1elC7TIqtLmLapqNler4nyCe5KEGgSG8='"],
 };
 ```
 

@@ -212,3 +212,6 @@ img#local, img#external {
 ol.extra-space > li:not(:last-of-type) {
   padding-bottom: 10px;
 }
+p.note {
+  margin-top: 10px;
+}
