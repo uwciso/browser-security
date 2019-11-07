@@ -32,7 +32,7 @@
   <p>Right now, the assets page pulls in jQuery from a CDN, and in doing so, is trusting that the CDN will serve an uncorrupted file. If the file were modified, the browser would have no way to detect that.</p>
   
   <ol class="extra-space">
-    <li>Add another layer of security for this file by supplying an <code>integrity</code> attribute on the corresponding <a href="https://github.com/uwciso/browser-security/blob/master/public/assets.html#L76" target="blank">script tag</a> of the public/assets.html file. For the attribute's value, you can easily generate a hash of the (jQuery) file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a>. Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).
+    <li>Add another layer of security for this file by supplying an <code>integrity</code> attribute on the corresponding <a href="https://github.com/uwciso/browser-security/blob/master/public/assets.html#L92" target="blank">script tag</a> of the <b>server's</b> assets.html file. For the integrity attribute's value, you can easily generate a hash of the jQuery file using this <a href="https://www.srihash.org/" target="0">SRI Hash Generator</a> (or, just use this hash: <code>sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT</code>). Don't forget to include a <code>crossorigin="anonymous"</code> attribute as well (see <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes" target="0">MDN</a> for more information on this attribute).
       <ol class="sublist">
         <li>Reload the assets page. Did the resource load as expected?</li>
         <li>Is this a CORS request? How can you tell?</li>
@@ -59,7 +59,7 @@
     <li>Has browser MIME sniffing been explicitly disabled by the server (to prevent the browser potentially making its own guess at the resource's content type and ignoring information sent by the server)? If not:
       <ol class="sublist">
         <li>Use Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> to fix it.</li>
-        <li>Reload the assets page, and verify the presence of the appropriate response header.</li>
+        <li>Reload the assets page, and verify the presence of the appropriate response header on all local resources.</li>
       </ol>
     </li>
   </ol>

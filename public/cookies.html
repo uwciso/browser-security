@@ -18,13 +18,13 @@
     <h2>Instructions</h2>
     <ol class="extra-space">
       <li>
-        Access the server's app.js file with the File Browser. For these exercises, you'll be editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L24-L26" target="0"><code>cookie_directives</code></a> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
+        Access the <b>server's</b> app.js file with File Browser. For these exercises, you'll be editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L24-L26" target="0"><code>cookie_directives</code></a> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
       <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
       </li>
     </ol>
   </div>
   <ol class="extra-space">
-    <li>Note that on the initial response of the assets page, this app sets a 'foo' cookie with a value of 'bar'.
+    <li>Note that on the initial response of the assets page, this app sets a 'foo' cookie with a value of 'bar' (look for a <code>Set-Cookie</code> response header).
       <ol class="sublist">
         <li>In the Dev Tools console, use JavaScript to access this cookie.</li>
         <li>Now, add the appropriate directive to the cookie to prevent this type of access.</li>
@@ -39,12 +39,12 @@
       
     </li>
     <li>
-      <p>Tighten the scoping of this cookie by making sure it's <i>only</i> sent on requests to the assets.html page.</p>
+      <p>Tighten the scoping of this cookie by making sure it's sent <i>only</i> on requests to the assets.html page.</p>
     </li>
     <li>
       <p>Ensure that this cookie won't be sent along with any cross-site (third party) requests.<p>
     </li>
-    <li>Finally, give this cookie an expiration date one minute from now. Note that Express expects the value of the "expires" key to be of <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">type Date</a>). 
+    <li>Finally, give this cookie an expiration date one minute from now. Note that Express expects the value of the "expires" key to be of <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">type Date</a>). Use <code>new Date(Date.now() + 60000)</code> for the cookie's value.
       <ol class="sublist">
         <li>Reload the assets page and check that the set cookie shows this expiration date. Wait more than a minute then reload the page again. Was the cookie sent on the request?</li>
       </ol>

@@ -91,34 +91,34 @@ This is a CORS request, since a `crossorigin="anonymous"` attribute is included 
 To verify that the script has been blocked because its integrity value doesn't match, you can:
 1. Try to execute a jQuery selection in the Dev Tools Console tab
 2. Observe the "Failed to find a valid" error message in the Console tab (Chrome)
-3. Use the (Chrome) Sources tab to see whether the jQuery resource is available
+3. Use the Sources tab (Chrome) or Debugger > Sources (Firefox) to see whether the jQuery resource is available
 
 ### (3)
 You'll see that the file does not load, because the request must be CORS enabled. This makes sense when you consider that in order for the integrity value of the resource to be checked by the browser, it (the browser) must have full programmatic access to the resource.
 
 ## MIME Types 
 ### (2)
-In the app.js file, use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-ContentT-Type-Options: nosniff` response header.
+In the app.js file, use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-Content-Type-Options: nosniff` response header.
 
 ## Safer Cookies
 ### (1)
-Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `foo: bar`. Update the cookie directives object:
+Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `foo: bar` Update the cookie directives object:
 ```
 const cookie_directives = {
   httpOnly: true
 }
 ```
-Now, issue the `document.cookie` command in the Dev Tools console again, and see that the result is now only `""`.
+Now, issue the `document.cookie` command in the Dev Tools console again, and see that the `foo=bar` value is no longer accessible.
 
 ### (2)
-To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie: foo=bar` request header (you can also check the "Cookies" sub menu in the Network tab).
+To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
 Now, add the "secure" directive to the cookie_directives object to allow cookies *only* on https requests:
 ```
 const cookie_directives = {
   secure: true
 }
 ```
-Check same-origin requests to verify that this cookie is no longer being sent.
+Check same-origin requests to verify that this cookie is no longer being sent (there should be no `Cookie` request header).
 
 ### (3)
 ```
