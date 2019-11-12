@@ -29,7 +29,7 @@ img#network {
   margin-top: 10px;
   margin-left: -5px;
   margin-bottom: 15px;
-  background-color: #e6e6e6;
+  background-color: #ede5f2;
   border-radius: 4px;
   padding: 10px 15px 5px 15px;
 }
@@ -214,4 +214,9 @@ ol.extra-space > li:not(:last-of-type) {
 }
 p.note {
   margin-top: 10px;
+}
+code {
+  color: #5b5b5b;
+  background-color: #e1e0e0;
+  padding: 1px 4px;
 }
