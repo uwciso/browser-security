@@ -3,3 +3,4 @@
 npm-debug.log
 *.swp
 *.swo
+/public/default.code-workspace
