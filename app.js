@@ -33,4 +33,4 @@ app.use(function(req, res, next) {
 
 app.use(express.static('public')); 
 
-app.listen(3100, '0.0.0.0', () => console.log('App is now running'));
+app.listen(3100, '0.0.0.0', () => console.log('App is now running on port 3100'));
