@@ -4,7 +4,74 @@ This simple Node/Express.js app provides an easy way to interactively learn abou
 
 In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https://helmetjs.github.io/) middleware to provide a simple means of modifying server response headers and other HTTP server configurations.
 
-## Installation - Local
+## Installation & Usage
+
+### Docker, using Docker Hub (easiest)
+
+1. Install [Docker](https://www.docker.com/)
+
+2. Run the public Docker Hub container, passing through Filebrowser credentials as environment variables (the values of which you can modify to suit your preference)  
+`docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 uwciso/browser-security:1.0`
+
+3. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
+
+### Docker, from locally built container
+
+1. Install [Docker](https://www.docker.com/)
+
+2. `git clone https://github.com/uwciso/browser-security.git`
+
+3. `cd browser-security`
+
+4. Build the container. Replace `<TAG>` with your tag name or version #  
+   `docker build --tag=browser-security:<TAG> . `
+
+5. Run the container, passing through Filebrowser credentials as environment variables (the values of which you can modify to suit your preference), and using your selected `<TAG>` from previous step  
+`docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
+
+6. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
+
+### Docker, from locally built container with externalized File Browser credentials
+
+1. Install [Docker](https://www.docker.com/)
+
+2. `git clone https://github.com/uwciso/browser-security.git`
+
+3. `cd browser-security`
+
+4. Create a Docker volume (file system)  
+   `docker volume create browser-sec-vol`
+
+5. Build the container. Replace `<TAG>` with your tag name or version #  
+   `docker build --tag=browser-security:<TAG> . `
+
+6. Run the container with the volume mounted  
+   `docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
+
+7. Run a shell on the container (assuming this is the only docker container running presently)  
+   `docker exec -it $(docker ps -q) /bin/bash`
+
+8. Create a new file called /dockervol/settings e.g. with vim  
+   `vi /dockervol/settings`
+
+9. Add the following content to the `settings` file, replacing the values with your desired username and password for accessing the file browser tool  
+   `FILE_BROWSER_USER="username"  
+    FILE_BROWSER_PASSWORD="password"`
+
+10. Save the file and exit vim
+
+11. Unmount the docker volume  
+   `exit`
+
+12. Shut down the container  
+   `docker container kill [container id]`
+
+13. Re-run the container, this time mounting the volume as read-only  
+   `docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
+
+14. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
+
+### Local (no Docker)
 
 Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which automatically installs with Node).
 
@@ -14,68 +81,11 @@ Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which auto
 
 3. `npm install` 
 
-## Usage - Local
-1. `npm run start` 
+4. `npm run start` 
 
-2. Point your browser to [localhost:3100](http://localhost:3100) 
+5. Point your browser to [localhost:3100](http://localhost:3100) 
 
-3. To do the exercises, you'll need to open up the app.js (and, eventually, assets.html) files in your text editor of choice.
-
-## Installation - Docker
-
-Make sure you have [Docker](https://www.docker.com/) installed.
-
-1. `git clone https://github.com/uwciso/browser-security.git`
-
-2. `cd browser-security`
-
-3. Build the container. Replace `<TAG>` with your tag name or version #  
-   `docker build --tag=browser-security:<TAG> . `
-
-4. Run the container, passing through Filebrowser credentials as environment variables, and using your selected `<TAG>` from previous step  
-`docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
-
-## Installation - Docker, with externalized File Browser credentials
-
-Make sure you have [Docker](https://www.docker.com/) installed.  Note that this is somewhat complicated in order to 
-externalise the filebrowser credentials from this project
-
-1. `git clone https://github.com/uwciso/browser-security.git`
-
-2. `cd browser-security`
-
-3. Create a Docker volume (file system)  
-   `docker volume create browser-sec-vol`
-
-4. Build the container. Replace `<TAG>` with your tag name or version #  
-   `docker build --tag=browser-security:<TAG> . `
-
-5. Run the container with the volume mounted  
-   `docker run --mount source=browser-sec-vol,destination=/dockervol -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
-
-6. Run a shell on the container (assuming this is the only docker container running presently)  
-   `docker exec -it $(docker ps -q) /bin/bash`
-
-7. Create a new file called /dockervol/settings e.g. with vim  
-   `vi /dockervol/settings`
-
-8. Add the following content to the `settings` file, replacing the values with your desired username and password for accessing the file browser tool  
-   `FILE_BROWSER_USER="username"  
-    FILE_BROWSER_PASSWORD="password"`
-
-9. Save the file and exit vim
-
-10. Unmount the docker volume  
-   `exit`
-
-11. Shut down the container  
-   `docker container kill [container id]`
-
-11. Re-run the container, this time mounting the volume as read-only  
-   `docker run --mount source=browser-sec-vol,destination=/dockervol,readonly -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
-
-## Usage - Docker
-1. After building and running the container (see above), browse to the exercises at [http://localhost:4000](http://localhost:4000) and the filebrowser at [http://localhost:4001](http://localhost:4001) 
+6. To do the exercises, you'll need to open up the app.js and public/assets.html files in your text editor of choice.
 
 ## Useful Docker commands
 * List Docker containers  
