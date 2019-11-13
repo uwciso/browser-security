@@ -11,7 +11,7 @@ In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https:/
 1. Install [Docker](https://www.docker.com/)
 
 2. Run the public Docker Hub container, passing through Filebrowser credentials as environment variables (the values of which you can modify to suit your preference)  
-`docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 uwciso/browser-security:1.0`
+`docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 uwciso/browser-security:1.1`
 
 3. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
 
