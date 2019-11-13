@@ -10,7 +10,7 @@ In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https:/
 
 1. Install [Docker](https://www.docker.com/)
 
-2. Run the public Docker Hub container, passing through Filebrowser credentials as environment variables (the values of which you can modify to suit your preference)  
+2. Run the public Docker Hub container, passing through File Browser credentials as environment variables (the values of which you can modify to suit your preference)  
 `docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 uwciso/browser-security:1.1`
 
 3. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
@@ -26,7 +26,7 @@ In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https:/
 4. Build the container. Replace `<TAG>` with your tag name or version #  
    `docker build --tag=browser-security:<TAG> . `
 
-5. Run the container, passing through Filebrowser credentials as environment variables (the values of which you can modify to suit your preference), and using your selected `<TAG>` from previous step  
+5. Run the container, passing through File Browser credentials as environment variables (the values of which you can modify to suit your preference), and using your selected `<TAG>` from previous step  
 `docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:<TAG>`
 
 6. Browse to the exercises at [http://localhost:4000](http://localhost:4000) and the File Browser at [http://localhost:4001](http://localhost:4001)
