@@ -9,14 +9,19 @@ const app = express();
 const csp_directives = {
 
 };
+
+app.use((req, res, next) => {
 /*****************************************************************************
- Also, uncomment the following app.use statement to use CSP for all requests
+ Also, uncomment this res.append statement to use CSP for all requests
 *****************************************************************************/
 /*
-app.use(helmet.contentSecurityPolicy({
-  directives: csp_directives
-}));
+    res.append("Content-Security-Policy", 
+    // The full value for our CSP:
+    "default-src 'self';"
+    );
 */
+    next();
+});
 
 /*****************************************************************************
  Modify this object with your chosen cookie directives 
