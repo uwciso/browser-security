@@ -2,8 +2,6 @@
 
 This simple Node/Express.js app provides an easy way to interactively learn about browser security features. 
 
-In addition to [Express.js](https://expressjs.com/), it uses [Helmet.js](https://helmetjs.github.io/) middleware to provide a simple means of modifying server response headers and other HTTP server configurations.
-
 ## Installation & Usage
 
 ### Docker, using Docker Hub (easiest)
@@ -106,5 +104,4 @@ Make sure you have [Node](https://nodejs.org/en/) installed (and npm, which auto
   `docker kill $(docker ps -q); docker rm $(docker ps -q -a); docker build --tag=browser-security:new .; docker run -e "FILE_BROWSER_USER=student" -e "FILE_BROWSER_PASSWORD=pwd" -d -p 127.0.0.1:4000:3100 -p 127.0.0.1:4001:8080 browser-security:new`
 
 ## Resources
-* [CSP with Helmet.js](https://helmetjs.github.io/docs/csp/)
 * [Setting response cookies with Express](https://expressjs.com/en/4x/api.html#res.cookie)
