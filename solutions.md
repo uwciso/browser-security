@@ -4,80 +4,62 @@
 
 ### (1)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self';"
+  );
 ```
 The web page itself will show you whether the inline scripts execute or not, but you can also verify this by inspecting the "Console" tab of Dev Tools, which will provide you more detailed info about the blocked script and how to allow it if you choose to.
 
 ### (2)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com;"
+  );
 ```
 The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective [`<link>` tag on the assets page](https://github.com/uwciso/browser-security/blob/master/public/assets.html#L8). Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
 
 ### (3)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *"
+  );
 ```
 
 ### (4)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-  'script-src': ['code.jquery.com'],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *; script-src code.jquery.com"
+  );
 ```
 
 ### (5)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-  'script-src': ["'self'", 'code.jquery.com'],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *; script-src 'self' code.jquery.com"
+  );
 ```
 
 ### (6)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-  'script-src': ["'self'", 'code.jquery.com', "'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk='"],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *; script-src 'self' code.jquery.com 'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk='"
+  );
 ```
 
 ### (7)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-  'script-src': ["*", 'code.jquery.com', "'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk='", "'sha256-ktXNNbajyvb1elC7TIqtLmLapqNler4nyCe5KEGgSG8='"],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *; script-src 'self' code.jquery.com 'sha256-h1cwFPKTk2NoBlhgjC+PVpyHwrmO1lKm3LKvZNeaAjk=' 'sha256-ktXNNbajyvb1elC7TIqtLmLapqNler4nyCe5KEGgSG8='"
+  );
 ```
 
 ### (7, alternate)
 ```
-const csp_directives = {
-  'default-src': ["'self'"],
-  'style-src': ["'self'", 'stackpath.bootstrapcdn.com'],
-  'img-src': ['*'],
-  'script-src': ["*", 'code.jquery.com', "'unsafe-inline'"],
-};
+  res.append("Content-Security-Policy", 
+  "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com; img-src *; script-src 'self' code.jquery.com 'unsafe-inline'"
+  );
 ```
-Of the two methods to allow inline scripts (which, again, is not advisable), the first (7) is preferable, in that it allows only two specific inline scripts by supplying their hashes. Any other inline scripts would be blocked. Using the `unsafe-inline` method is, of course, unsafe because it opens the page up to *any* inline script.
+Of the two methods to allow inline scripts (which, again, is not advisable), the first (7) is preferable, in that it allows only two specific inline scripts by supplying their hashes. Any other inline scripts would be blocked. Using `unsafe-inline` is, of course, unsafe because it opens the page up to *any* inline script.
 
 ## Subresource Ingegrity (SRI)
 
@@ -98,13 +80,17 @@ You'll see that the file does not load, because the request must be CORS enabled
 
 ## MIME Types 
 ### (2)
-In the app.js file, use `app.use(helmet.noSniff())` after the `attach_cookie` method, then verify the presence of the `X-Content-Type-Options: nosniff` response header.
+In the app.js file, add another <code>res.append</code> statement in the first <code>app.use</code> function
+```
+res.append("X-Content-Type-Options", "nosniff");
+```
+Then, verify the presence of the `X-Content-Type-Options: nosniff` response header.
 
 ## Safer Cookies
 ### (1)
-Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `foo: bar` Update the cookie directives object:
+Access the cookie initially by using `document.cookie` in the Dev Tools console. The console should return `foo: bar` Update the cookie props object:
 ```
-const cookie_directives = {
+const cookie_props = {
   httpOnly: true
 }
 ```
@@ -112,9 +98,9 @@ Now, issue the `document.cookie` command in the Dev Tools console again, and see
 
 ### (2)
 To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
-Now, add the "secure" directive to the cookie_directives object to allow cookies *only* on https requests:
+Now, add the "secure" property to the cookie to allow cookies *only* on https requests:
 ```
-const cookie_directives = {
+const cookie_props = {
   secure: true
 }
 ```
@@ -122,7 +108,7 @@ Check same-origin requests to verify that this cookie is no longer being sent (t
 
 ### (3)
 ```
-const cookie_directives = {
+const cookie_props = {
   path: '/assets.html'
 }
 ```
@@ -132,7 +118,7 @@ At any time, you can clear the cookies from your browser for this specific app b
 
 ### (4)
 ```
-const cookie_directives = {
+const cookie_props = {
   sameSite: 'Strict'
 }
 ```
@@ -140,7 +126,7 @@ const cookie_directives = {
 ### (5)
 Use JS to create a new Date object set to one minute in the future:
 ```
-const cookie_directives = {
+const cookie_props = {
   expires: new Date(Date.now() + 60000)
 }
 ```

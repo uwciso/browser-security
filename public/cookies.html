@@ -19,7 +19,7 @@
     <h2>Instructions</h2>
     <ol class="extra-space">
       <li>
-        Access the <b>server's</b> <a href="#" target="_blank" id="filebrowser_app">app.js file with File Browser</a>. For these exercises, you'll be editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L24-L26" target="0"><code>cookie_directives</code></a> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
+        Access the <b>server's</b> <a href="#" target="_blank" id="filebrowser_app">app.js file with File Browser</a>. For these exercises, you'll be editing the <code>cookie_props</code> object. (Refer to the <a href="https://expressjs.com/en/4x/api.html#res.cookie" target="0">Express docs</a> for syntax guidance)</li>
       <li>On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
       </li>
     </ol>
@@ -28,7 +28,7 @@
     <li>Note that on the initial response of the assets page, this app sets a 'foo' cookie with a value of 'bar' (look for a <code>Set-Cookie</code> response header).
       <ol class="sublist">
         <li>In the Dev Tools console, use JavaScript to access this cookie.</li>
-        <li>Now, add the appropriate directive to the cookie to prevent this type of access.</li>
+        <li>Now, add the appropriate property to the cookie to prevent this type of access.</li>
         <li>Reload the assets page and try accessing the cookie again through the console.</li>
       </ol> 
     </li>

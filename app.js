@@ -1,38 +1,29 @@
 const express = require('express');
 const path = require('path');
-const helmet = require('helmet');
 const app = express();
-
-/*****************************************************************************
- Modify this object with your chosen CSP directives
-*****************************************************************************/
-const csp_directives = {
-
-};
 
 app.use((req, res, next) => {
 /*****************************************************************************
- Also, uncomment this res.append statement to use CSP for all requests
+ Uncomment this res.append statement to use CSP for all requests
 *****************************************************************************/
-/*
+    /*
     res.append("Content-Security-Policy", 
-    // The full value for our CSP:
-    "default-src 'self';"
+    // CSP here
     );
-*/
+    */
     next();
 });
 
 /*****************************************************************************
- Modify this object with your chosen cookie directives 
+ Modify this object with your chosen cookie properties 
 *****************************************************************************/
-const cookie_directives = {
+const cookie_props = {
 
 }
 /*****************************************************************************/
 
-app.use(function(req, res, next) {
-  res.cookie('foo', 'bar', cookie_directives);
+app.use((req, res, next) => {
+  res.cookie('foo', 'bar', cookie_props);
   next();
 });
 
