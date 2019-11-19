@@ -16,7 +16,7 @@ The web page itself will show you whether the inline scripts execute or not, but
   "default-src 'self'; style-src 'self' stackpath.bootstrapcdn.com;"
   );
 ```
-The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no "Origin" header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective [`<link>` tag on the assets page](https://github.com/uwciso/browser-security/blob/master/public/assets.html#L8). Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
+The asset page's request for the Bootstrap stylesheet will NOT be a CORS request. You can verify this by observing that the request will have no `Origin` header, and, you'll have no access to the resource's data (which, in this case, is the CSS object model). But, because Bootstrap does provide an `Access-Control-Allow-Origin` header with a value of "*", you could make this a CORS request by simply adding a `crossorigin="anonymous"` attribute to the respective [`<link>` tag on the assets page](https://github.com/uwciso/browser-security/blob/master/public/assets.html#L8). Once a CORS request, you'll see an "Origin" header on the request, and, you'll have access to the CSS object model (you can verify this by inspecting `document.styleSheets[0].rules` at the console, which will now show you all the rules in the CSS object model of the Bootstrap stylesheet).
 
 ### (3)
 ```
@@ -67,7 +67,7 @@ Of the two methods to allow inline scripts (which, again, is not advisable), the
 ```
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
 ```
-This is a CORS request, since a `crossorigin="anonymous"` attribute is included on the script tag, and the jQuery CDN provided an  `Access-Control-Allow-Origin: *` header. You can verify CORS by inspecting the request for the presence of an "Origin" header.
+This is a CORS request, since a `crossorigin="anonymous"` attribute is included on the script tag, and the jQuery CDN provided an  `Access-Control-Allow-Origin: *` header. You can verify CORS by inspecting the request for the presence of an `Origin` header.
 
 ### (2)
 To verify that the script has been blocked because its integrity value doesn't match, you can:
@@ -98,7 +98,7 @@ Now, issue the `document.cookie` command in the Dev Tools console again, and see
 
 ### (2)
 To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
-Now, add the "secure" property to the cookie to allow cookies *only* on https requests:
+Now, add the `secure` property to the cookie to allow cookies *only* on https requests:
 ```
 const cookie_props = {
   secure: true
