@@ -59,7 +59,7 @@
     </li>
     <li>Has browser MIME sniffing been explicitly disabled by the server (to prevent the browser potentially making its own guess at the resource's content type and ignoring information sent by the server)? If not:
       <ol class="sublist">
-        <li>Use Helmet.js's <a href="https://helmetjs.github.io/docs/dont-sniff-mimetype/" target="0">noSniff module</a> to fix it.</li>
+        <li>Add an <code>X-Content-Type-Options</code> response header with a value of "nosniff" (do this by adding a <code>res.append</code> in the first <code>app.use</code> function).</li>
         <li>Reload the assets page, and verify the presence of the appropriate response header on all local resources.</li>
       </ol>
     </li>
