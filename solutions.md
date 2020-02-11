@@ -97,16 +97,6 @@ const cookie_props = {
 Now, issue the `document.cookie` command in the Dev Tools console again, and see that the `foo=bar` value is no longer accessible.
 
 ### (2)
-To verify the cookie is being sent on other same-origin resource requests, on the Dev Tools Network tab, select the resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
-Now, add the `secure` property to the cookie to allow cookies *only* on https requests:
-```
-const cookie_props = {
-  secure: true
-}
-```
-Check same-origin requests to verify that this cookie is no longer being sent (there should be no `Cookie` request header).
-
-### (3)
 ```
 const cookie_props = {
   path: '/assets.html'
@@ -116,17 +106,26 @@ Note that on the initial page load, each asset's response will have a `Set-Cooki
 
 At any time, you can clear the cookies from your browser for this specific app by using the "Storage" tab in Firefox's Dev Tools, or "Application" in Chrome.
 
-### (4)
+### (3)
 ```
 const cookie_props = {
   sameSite: 'Strict'
 }
 ```
 
-### (5)
+### (4)
 Use JS to create a new Date object set to one minute in the future:
 ```
 const cookie_props = {
   expires: new Date(Date.now() + 60000)
 }
 ```
+### (5)
+To verify the cookie is being sent on requests to assets.html, on the Dev Tools Network tab, select the assets.html resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
+Now, add the `secure` property to the cookie to allow cookies *only* on https requests:
+```
+const cookie_props = {
+  secure: true
+}
+```
+Check same-origin requests to verify that this cookie is no longer being sent (there should be no `Cookie` request header).
