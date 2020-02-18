@@ -26,12 +26,21 @@
         On another browser tab, open the <a href="assets.html" target="_blank">assets page</a> along with Dev Tools.
       </li>
       <li>
-        For each challenge below, create a corresponding content security policy by uncommenting and then editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L9-L11" target="blank"></a><code>res.append</code></a> function in the <b>server's</b> app.js file.
+        For each challenge below, create a corresponding content security policy by uncommenting and then editing the <a href="https://github.com/uwciso/browser-security/blob/master/app.js#L9-L11" target="blank"></a><code>res.append</code></a> function in the <b>server's</b> app.js file (see next section for syntax guidance).
       </li>
       <li>
         Check the results of each CSP modification by reloading the assets page in the browser, and observing which assets were loaded/executed.
       </li>
     </ol>
+  </div>
+
+  <div class="syntax-guide">
+    <h2>CSP Syntax (With Express)</h2>
+    <p>Inside the <code>res.append</code> function, use the double-quoted string <code>"Content-Security-Policy"</code> followed by a comma and another double-quoted string of directives. For example,</p>
+    <p class="code-example"><code>res.append("Content-Security-Policy",<br/>
+    &nbsp;&nbsp; "style-src 'self' stylecdn.com; script-src 'unsafe-inline';"<br/>
+      );</code></p>
+    <p>Each single directive is terminated with a semicolon, and special non-host designations such as <code>self</code> and <code>unsafe-inline</code> must be single-quoted (inside the double-quoted set of directives).</p>
   </div>
 
   <div class="csp-challenges">

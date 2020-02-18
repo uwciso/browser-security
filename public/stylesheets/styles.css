@@ -225,3 +225,12 @@ code {
 pre > code {
   padding-right: 1.5em !important;
 }
+.syntax-guide {
+  border: 1px solid #cecece;
+  padding: 12px 16px 0 16px;
+  border-radius: 4px;
+  margin-left: -5px;
+}
+.code-example {
+  margin-left: 20px;
+}
