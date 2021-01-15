@@ -2,6 +2,8 @@
 ---
 ## Content Security Policy
 
+Note that for all CSP solutions below, the second argument of the `res.append` method must be a double-quoted string, inside of which there may be single-quoted keywords (such as `'self'`, for example).
+
 ### (1)
 ```
   res.append("Content-Security-Policy", 
@@ -102,7 +104,7 @@ const cookie_props = {
   path: '/assets.html'
 }
 ```
-Note that on the initial page load, each asset's response will have a `Set-Cookie` header. But, on subsequent page loads, you should see that only the assets.html will have a `Cookie` header. 
+Note that on the initial page load, each asset's response will have a `Set-Cookie` header. But, on subsequent page loads, you should see that only the assets.html will have a `Cookie` request header. 
 
 At any time, you can clear the cookies from your browser for this specific app by using the "Storage" tab in Firefox's Dev Tools, or "Application" in Chrome.
 
@@ -120,6 +122,9 @@ const cookie_props = {
   expires: new Date(Date.now() + 60000)
 }
 ```
+
+Reload the page, and observe that the cookie was sent on the initial response with assets.html (with the `Set-Cookie` response header). Similarly, all subsequent asset requests will include this cookie (with the `Cookie` request header). After a minute elapses, reload the page again, and observe that the cookie is no longer sent along with asset requests.
+
 ### (5)
 To verify the cookie is being sent on requests to assets.html, on the Dev Tools Network tab, select the assets.html resource, then look for the `Cookie` request header (you can also check the "Cookies" sub menu in the Network tab).
 Now, add the `secure` property to the cookie to allow cookies *only* on https requests:

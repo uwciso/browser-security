@@ -52,14 +52,60 @@
 
     </li>
   </ol>
-  <h2>Resources</h2>
-  <ul>
-    <li>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN on setting cookies</a>
-    </li>
-    <li>
-      <a href="https://expressjs.com/en/4x/api.html#res.cookie"target="0">Using cookies with Express.js</a> 
-    </li>
-  </ul>
+
+  <div class="syntax-guide">
+     <h2>Reference and Examples</h2>
+     <div class="syntax-guide-content">
+       <h3>General response header example</h3>
+       <p><code>Set-Cookie: HttpOnly; Secure; SameSite=Strict; Domain=uw.edu; Path=/; Expires=Fri, 19 Oct 2018 07:00:00 PST;</code></p>
+
+       <h3>Syntax with Express.js</h3>
+       <p>Inside app.js's <code>cookie_props</code> object, use a key-value pair for each cookie property:</p>
+       <div class="code-block">
+         <p class="code-example"><code>const cookie_props {<br/>
+         &nbsp;&nbsp; httpOnly: true,<br/>
+         &nbsp;&nbsp; secure: true,<br/>
+         &nbsp;&nbsp; ...<br/>
+        };</code></p>
+       </div>
+
+       <h3>Syntax translation</h3>
+          <table class="syntax-translation">
+            <tr>
+              <th>Set-Cookie property</th>
+              <th>Express syntax</th>
+            </tr>
+            <tr>
+              <td><code>HttpOnly</code></td>
+              <td><code>httpOnly: true</code></td>
+            </tr>
+            <tr>
+              <td><code>Path=/</code></td>
+              <td><code>path: '/'</code></td>
+            </tr>
+            <tr>
+              <td><code>SameSite=Strict</code></td>
+              <td><code>sameSite: 'Strict'</code></td>
+            </tr>
+            <tr>
+             <td><code>Expires=<i>date</i></code></td>
+              <td><code>expires: <i>date</i></code></td>
+            </tr>
+            <tr>
+              <td><code>Secure</code></td>
+              <td><code>secure: true</code></td>
+            </tr>
+          </table>
+       <h3>Additional resources</h3>
+       <ul>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie" target="0">MDN on setting cookies</a>
+        </li>
+        <li>
+          <a href="https://expressjs.com/en/4x/api.html#res.cookie"target="0">Using cookies with Express.js</a>
+        </li>
+      </ul>
+     </div>
+   </div>
 </body>
 </html>

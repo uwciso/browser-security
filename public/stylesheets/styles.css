@@ -6,6 +6,9 @@
   margin-bottom: 10px;
   border-radius: 4px;
 }
+.assets.banner {
+  background-color: #85754d;
+}
 .card {
   margin-top: 0 !important;
 }
@@ -29,7 +32,8 @@ img#network {
   margin-top: 10px;
   margin-left: -5px;
   margin-bottom: 15px;
-  background-color: #ede5f2;
+  background-color: #e6e6e6;
+  border: 1px solid #cacaca;
   border-radius: 4px;
   padding: 10px 15px 5px 15px;
 }
@@ -216,8 +220,8 @@ p.note {
   margin-top: 10px;
 }
 code {
-  color: #5b5b5b;
-  background-color: #e1e0e0;
+  background-color: #626262;
+  color: white;
   padding: 1px 5px;
   border-radius: 1px;
   width: -moz-fit-content;
@@ -230,7 +234,33 @@ pre > code {
   padding: 12px 16px 0 16px;
   border-radius: 4px;
   margin-left: -5px;
+  background-color: #e6e6e6;
+}
+.syntax-guide-content {
+  margin-left: 10px;
+}
+.extra-emphasis {
+  color: red;
+}
+table.handy-directives, table.syntax-translation {
+  margin-bottom: 21px;
+}
+table.handy-directives td {
+  padding-right: 10px;
+}
+table.syntax-translation td {
+  padding-right: 55px;
 }
 .code-example {
   margin-left: 20px;
+}
+.code-block {
+  background-color: #626262;
+  width: 30%;
+  padding: 8px 0 1px 2px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.code-block.wider {
+  width: 50%;
 }
