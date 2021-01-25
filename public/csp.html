@@ -158,14 +158,14 @@
        <p><code>Content-Security-Policy: default-src 'self'; img-src *; media-src *.media1.com *.media2.com; script-src 'self' userscripts.example.com</code></p>
 
        <h3>CSP syntax with Express.js</h3>
-       <p>Inside the <code>res.append</code> function, use the double-quoted string <code>"Content-Security-Policy"</code> followed by a comma and another double-quoted string of directives. For example,</p>
+       <p>Inside the <code>res.append</code> method, use the double-quoted string <code>"Content-Security-Policy"</code> followed by a comma and another double-quoted string of directives. For example,</p>
        <div class="code-block wider">
          <p class="code-example"><code>res.append("Content-Security-Policy",<br/>
            &nbsp;&nbsp; "default-src 'self'; img-src *; media-src *.media1.com *.media2.com; <span class="extra-emphasis">\</span><br/>
          &nbsp;&nbsp;  script-src 'self' userscripts.example.com;"<br/>
           );</code></p>
        </div>
-       <p>Each single directive is terminated with a semicolon, and special non-host designations such as <code>self</code> and <code>unsafe-inline</code> must be single-quoted. Note that the second argument to the res.append method (the entire set of CSP directives) must be one double-quoted string. For legibility, also note the optional use of the <span class="extra-emphasis">backslash</span> for line continuation of a single multi-line string.</p>
+       <p>Each single directive is terminated with a semicolon, and special non-host designations such as <code>self</code> and <code>unsafe-inline</code> must be single-quoted. Note that the second argument to the <code>res.append</code> method (the entire set of CSP directives) must be one double-quoted string. For legibility, also note the optional use of the <span class="extra-emphasis">backslash</span> for line continuation of a single multi-line string (if used, ensure that there are no additional spaces after the backslash character).</p>
        <h3>Handy directives</h3>
           <table class="handy-directives">
             <tr>
